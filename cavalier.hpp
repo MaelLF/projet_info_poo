@@ -14,7 +14,7 @@ public:
 
 private:
     // Méthode pour vérifier si le déplacement est valide pour un Cavalier
-    bool isValidMove(int newX, int newY) const;
+    bool isValidMove(int newX, int newY, Playboard& pboard) const;
 };
 
 #endif // CAVALIER_HPP
