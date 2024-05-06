@@ -1,7 +1,20 @@
-#include "piece.hpp"
+#ifndef CAVALIER_HPP
+#define CAVALIER_HPP
 
-class Cavalier : public Piece{
-    public :
-        Cavalier(){name = "Cavalier";};
-        Cavalier(int x, int y){name = "Cavalier"; posx=x;posy=y;};
+#include "piece.hpp"
+#include "playboard.hpp" // Assurez-vous d'inclure le fichier Playboard pour pouvoir utiliser la classe Playboard
+
+class Cavalier : public Piece {
+public:
+    Cavalier() { name = "Cavalier"; }
+    Cavalier(int x, int y) { name = "Cavalier"; posx = x; posy = y; }   
+
+    // Méthode pour déplacer le Cavalier
+    void move(int newX, int newY, Playboard& board);
+
+private:
+    // Méthode pour vérifier si le déplacement est valide pour un Cavalier
+    bool isValidMove(int newX, int newY) const;
 };
+
+#endif // CAVALIER_HPP
