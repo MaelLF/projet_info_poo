@@ -20,7 +20,6 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             if (isValidMove(newX, newY)) {
                 posx = newX ;
                 posy = newY ;
-                board.setCell(newX, newY,'C'); // 'C' pour Cavalier par exemple
             }
             std::cout << "2 haut 1 gauche" << std::endl;
             return posx, posy ;
@@ -112,18 +111,8 @@ int Cavalier::deplacement(int choix, Playboard& board) {
 
         default:
             // Actions à effectuer si choix n'est égal à aucune des valeurs précédentes
-            std::cout << "Aucun choix selectionné" << std::endl;
+            std::cout << "Déplacement invalide pour un Cavalier !" << std::endl;
             break;
-    }
-
-    if (isValidMove(newX, newY)) {
-        // Déplacer le Cavalier
-        posx = newX;
-        posy = newY;
-        // Mettre à jour la position sur le plateau
-        board.setCell(newX, newY, 'C'); // 'C' pour Cavalier par exemple
-    } else {
-        std::cout << "Déplacement invalide pour un Cavalier !" << std::endl;
     }
 }
 
