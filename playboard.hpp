@@ -1,7 +1,9 @@
 #include "cell.hpp"
-
 #include <iostream>
 #include <vector>
+
+#ifndef playboard_HPP
+#define playboard_HPP
 
 class Playboard {
 private:
@@ -10,10 +12,12 @@ private:
     std::vector<std::vector<Cell>> board;
 
 public:
-    Playboard(int n, int m) : rows(n), cols(m);
+    Playboard(int n, int m);
 
     void printBoard() const;
     bool isValidCell(int row, int col) const;
-    void setCell(int row, int col, char value);
-    char getCell(int row, int col) const;
+    void setCell(int row, int col, Cell& cell);
+    Cell getCell(int row, int col) const;
 };
+
+#endif
