@@ -10,5 +10,8 @@ class Piece{
         int posy;
         virtual void display(){std::cout << name << std::endl;};
         virtual std::string getname(){return name;};
+        virtual int deplacement(int choix, int range,Playboard& board){}
+        virtual int deplacement(int choix, Playboard& board){}
+
 };
 #endif
