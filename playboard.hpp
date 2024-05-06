@@ -1,9 +1,10 @@
+#ifndef playboard_HPP
+#define playboard_HPP
+
 #include "cell.hpp"
 #include <iostream>
 #include <vector>
 
-#ifndef playboard_HPP
-#define playboard_HPP
 
 class Playboard {
 private:

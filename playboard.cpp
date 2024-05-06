@@ -12,7 +12,7 @@ Playboard::Playboard(int n, int m) : rows(n), cols(m) {
 void Playboard::printBoard() const {
     for (const auto& row : board) {
         for (Cell cell : row) {
-            std::cout << ' ';
+            std::cout << cell.getStatus() << ' ';
         }
         std::cout << std::endl;
     }
