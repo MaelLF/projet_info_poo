@@ -5,4 +5,5 @@ class Pion : public Piece{
         Pion(){ name = "Pion";};
         Pion(int x, int y){name = "Pion"; posx=x;posy=y;};
         virtual void display(){std::cout << name << std::endl;};
+        int deplacement(Playboard& pboard)override{}
 };
