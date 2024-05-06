@@ -2,7 +2,7 @@ CC = g++ # Le compilateur
 CFLAGS = -std=c++11 -Wall # Options du compilateur
 
 # Les fichiers source
-SRC =  main.cpp
+SRC =  playboard.cpp main.cpp
 
 # Les fichiers objets
 OBJ = $(SRC:.cpp=.o)

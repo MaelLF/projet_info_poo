@@ -4,9 +4,13 @@
 #define cell_H
 // Classe abstraite Cell
 class Cell {
+protected:
+    std::string name ="cell";
+    int status = 1;
+    int color = 0;
+
 public:
     virtual ~Cell() = default; // Déstructeur virtuel
-    std::string name ="cell";
     // Méthode virtuelle pure pour afficher le type de la cellule
     virtual void display(){std::cout << name << std::endl;};
 };
