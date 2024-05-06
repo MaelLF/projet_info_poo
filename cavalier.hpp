@@ -10,7 +10,7 @@ public:
     Cavalier(int x, int y) { name = "Cavalier"; posx = x; posy = y; }   
 
     // Méthode pour déplacer le Cavalier
-    void move(int newX, int newY, Playboard& board);
+    int deplacement(int choix, Playboard& board);
 
 private:
     // Méthode pour vérifier si le déplacement est valide pour un Cavalier
