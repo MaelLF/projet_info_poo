@@ -13,6 +13,7 @@ public:
     virtual ~Cell() = default; // Déstructeur virtuel
     // Méthode virtuelle pure pour afficher le type de la cellule
     virtual void display(){std::cout << name << std::endl;};
+    int getstatus(){return status;};
 };
 #endif
 
