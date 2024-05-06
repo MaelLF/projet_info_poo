@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include "playboard.hpp"
 #ifndef piece_H
 #define piece_H
 class Piece{
@@ -12,6 +13,7 @@ class Piece{
         virtual std::string getname(){return name;};
         virtual int deplacement(int choix, int range,Playboard& board){}
         virtual int deplacement(int choix, Playboard& board){}
+        virtual int deplacement(Playboard& pboard){}
 
 };
 #endif

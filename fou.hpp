@@ -1,5 +1,4 @@
 #include "piece.hpp"
-#include "playboard.hpp"
 class Fou : public Piece{
     public :
         Fou(){
