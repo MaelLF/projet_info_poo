@@ -11,13 +11,13 @@ Cavalier::Cavalier(int x, int y) {
     posy = y;
 }
 
-int Cavalier::deplacement(int choix, Playboard& board) {
+int Cavalier::deplacement(int choix, Playboard& pboard) {
     switch (choix) {
         case 1:
             // 2 haut 1 gauche : Actions à effectuer si choix est égal à 1
             int newX = posx - 1 ;
             int newY = posy - 2 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -29,7 +29,7 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             // 2 haut 1 droite : Actions à effectuer si choix est égal à 2
             int newX = posx + 1 ;
             int newY = posy - 2 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -41,7 +41,7 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             // 2 droite 1 haut : Actions à effectuer si choix est égal à 3
             int newX = posx + 2 ;
             int newY = posy - 1 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -53,7 +53,7 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             // 2 droite 1 bas : Actions à effectuer si choix est égal à 3
             int newX = posx + 2 ;
             int newY = posy + 1 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -65,7 +65,7 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             // Actions à effectuer si choix est égal à 3
             int newX = posx + 1 ;
             int newY = posy + 2 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -77,7 +77,7 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             // Actions à effectuer si choix est égal à 3
             int newX = posx - 1 ;
             int newY = posy + 2 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -89,7 +89,7 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             // Actions à effectuer si choix est égal à 3
             int newX = posx - 2 ;
             int newY = posy + 1 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -101,7 +101,7 @@ int Cavalier::deplacement(int choix, Playboard& board) {
             // Actions à effectuer si choix est égal à 3
             int newX = posx - 2 ;
             int newY = posy - 1 ;
-            if (isValidMove(newX, newY)) {
+            if (isValidMove(newX, newY, pboard)) {
                 posx = newX ;
                 posy = newY ;
             }
@@ -116,9 +116,11 @@ int Cavalier::deplacement(int choix, Playboard& board) {
     }
 }
 
-bool Cavalier::isValidMove(int newX, int newY) const {
+bool Cavalier::isValidMove(int newX, int newY, Playboard& pboard) const {
     int dx = abs(newX - posx);
     int dy = abs(newY - posy);
     // Vérifier si le déplacement correspond à l'un des 8 mouvements possibles pour un Cavalier
     return (dx == 1 && dy == 2) || (dx == 2 && dy == 1);
 }
+
+
