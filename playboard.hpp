@@ -19,6 +19,7 @@ public:
     bool isValidCell(int row, int col) const;
     void setCell(int row, int col, Cell& cell);
     Cell getCell(int row, int col) const;
+    void initPlayboard();
 };
 
 #endif
