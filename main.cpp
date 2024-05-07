@@ -33,3 +33,6 @@ int main() {
 
     return 0;
 }
+    Playboard plateau(8,20);
+    plateau.printBoard();
+}
