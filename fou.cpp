@@ -7,20 +7,22 @@ int Fou::deplacement(int choix,int range,Playboard& pboard){
     case 0 :
         for( int i=0;i<range+1;i++){
             if(!pboard.isValidCell(posx-i,posy-1) && !pboard.getCell(posx-i,posy-i).getStatus()){
+                printf("deplacement pas fait");
                 return 0;
             }
-            posx = posx-i;
-            posy = posy-i;
-            return 1;
         }
+            posx = posx-range;
+            posy = posy-range;
+            printf("deplacement fait");
+            return 1;
 
     case 1 :
         for( int i=0;i<range+1;i++){
             if(!pboard.isValidCell(posx+i,posy-1) && !pboard.getCell(posx+i,posy-i).getStatus()){
                 return 0;
             }
-            posx = posx+i;
-            posy = posy-i;
+            posx = posx+range;
+            posy = posy-range;
             return 1;
         }
 
@@ -29,19 +31,20 @@ int Fou::deplacement(int choix,int range,Playboard& pboard){
             if(!pboard.isValidCell(posx+i,posy+1) && !pboard.getCell(posx+i,posy+i).getStatus()){
                 return 0;
             }
-            posx = posx+i;
-            posy = posy+i;
-            return 1;
         }
+            posx = posx+range;
+            posy = posy+range;
+            return 1;
 
     case 3 :
         for( int i=0;i<range+1;i++){
             if(!pboard.isValidCell(posx-i,posy+1) && !pboard.getCell(posx-i,posy+i).getStatus()){
                 return 0;
             }
-            posx = posx-i;
-            posy = posy+i;
-            return 1;
         }
+            posx = posx-range;
+            posy = posy+range;
+            return 1;
     }
+    return 0;
 }
