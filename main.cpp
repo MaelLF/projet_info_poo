@@ -27,6 +27,6 @@ int main(){
     Joueur joueur1("mathieu",fou);
     joueur1.display();
 
-    Playboard plateau(5,10);
+    Playboard plateau(8,20);
     plateau.printBoard();
 }

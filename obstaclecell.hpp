@@ -1,6 +1,15 @@
+#ifndef obstaclecell_H
+#define obstaclecell_H
+
 #include "cell.hpp"
 
 class ObstacleCell : public Cell {
 public:
-    std::string name ="obstacle cell";
+    //Constructeur
+    ObstacleCell(){
+        name ="obstacle cell";
+        status = 0;
+    }
 };
+
+#endif

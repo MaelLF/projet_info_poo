@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <memory> // Pour std::unique_ptr
+
 // Classe abstraite Cell
 class Cell {
 protected:
@@ -13,8 +14,9 @@ protected:
 public:
     virtual ~Cell() = default; // Déstructeur virtuel
     // Méthode virtuelle pure pour afficher le type de la cellule
-    virtual void display();
+    void display();
     int getStatus() const;
 };
+
 #endif
 
