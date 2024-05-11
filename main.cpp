@@ -31,9 +31,10 @@ int main() {
         plateau.printBoard(); // Affiche l'état du plateau après le déplacement
     }
 
-    return 0;
-}
     Playboard plateau(8,20);
     plateau.initPlayboard();
     plateau.printBoard();
+    
+    return 0;
 }
+
