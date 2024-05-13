@@ -22,8 +22,7 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 haut 1 gauche" << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
 
         case 2:
             // 2 haut 1 droite : Actions à effectuer si choix est égal à 2
@@ -34,8 +33,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 haut 1 droite" << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
+
 
         case 3:
             // 2 droite 1 haut : Actions à effectuer si choix est égal à 3
@@ -46,8 +45,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 droite 1 haut" << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
+
 
         case 4:
             // 2 droite 1 bas : Actions à effectuer si choix est égal à 3
@@ -58,8 +57,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 droite 1 bas" << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
+
 
         case 5:
             // Actions à effectuer si choix est égal à 3
@@ -70,8 +69,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 bas 1 droite" << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
+
 
         case 6:
             // Actions à effectuer si choix est égal à 3
@@ -82,8 +81,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 bas 1 gauche" << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
+
 
         case 7:
             // Actions à effectuer si choix est égal à 3
@@ -94,8 +93,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 gauche 1 bas " << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
+
         
         case 8:
             // Actions à effectuer si choix est égal à 3
@@ -106,8 +105,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 posy = newY ;
             }
             std::cout << "2 gauche 1 haut " << std::endl;
-            return posx, posy ;
-            break;
+            return 1 ;
+
 
         default:
             // Actions à effectuer si choix n'est égal à aucune des valeurs précédentes
