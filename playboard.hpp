@@ -1,11 +1,11 @@
 #ifndef playboard_HPP
 #define playboard_HPP
 
-#include "cell.hpp"
 #include <iostream>
 #include <vector>
+#include "cell.hpp"
 
-
+class Joueur;   
 class Playboard {
 private:
     int rows;
@@ -16,10 +16,12 @@ public:
     Playboard(int n, int m);
 
     void printBoard() const;
+    void printBoard(Joueur joueur1, Joueur joueur2) const;
     bool isValidCell(int row, int col) const;
     void setCell(int row, int col, Cell& cell);
     Cell getCell(int row, int col) const;
     void initPlayboard();
+    int isoccupied(int row, int col, Joueur joueur)const;
 };
 
 #endif

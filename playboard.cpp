@@ -3,10 +3,11 @@
 #include "duelcell.hpp"
 #include "obstaclecell.hpp"
 #include "playboard.hpp"
-
+#include "joueur.hpp"
 #include <iostream>
 #include <vector>
 #include <cstdlib> //random 
+#define NB_JOUEURS 2
 
 Playboard::Playboard(int n, int m) : rows(n), cols(m) {
     // Initialiser le plateau avec des cellules vides 
@@ -19,6 +20,23 @@ void Playboard::printBoard() const {
             std::cout << cell.getStatus() << ' ';
         }
         std::cout << std::endl;
+    }
+}
+void Playboard::printBoard(Joueur joueur1,Joueur joueur2) const {
+    int ligne = 0; 
+    int colon = 0;
+    for (const auto& row : board) {
+        colon = 0;
+        for (Cell cell : row) {
+            if (this->isoccupied(ligne, colon, joueur1) || (this->isoccupied(ligne, colon, joueur2))) {
+                std::cout << '3' << ' '; // Affiche '3' si la case est occupée
+            } else {
+                std::cout << cell.getStatus() << ' '; 
+            }
+            colon++;
+        }
+        std::cout << std::endl;
+        ligne++; //
     }
 }
 
@@ -83,3 +101,9 @@ void Playboard::initPlayboard(){
     }
 }
 
+int Playboard::isoccupied(int row,int col,Joueur joueur)const{
+        if (joueur.my_piece->posx == row && joueur.my_piece->posy == col){
+            return 1;
+        }
+    return 0;
+}
