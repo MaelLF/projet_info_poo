@@ -31,6 +31,11 @@ int main() {
         joueur1.display(); // Affiche les détails mis à jour du joueur et de sa pièce
         std::shared_ptr<Piece> pionPtr = std::make_shared<Pion>(fouPtr->posx,fouPtr->posy);
         joueur1.my_piece = pionPtr;
+        joueur1.my_piece->deplacement(0,0,plateau);
+        joueur1.display();
+        std::shared_ptr<Piece> cavalierPtr = std::make_shared<Cavalier>(joueur1.my_piece->posx,joueur1.my_piece->posy);
+        joueur1.my_piece = cavalierPtr;
+        joueur1.my_piece->deplacement(3,0,plateau);
         joueur1.display();
         plateau.printBoard(); // Affiche l'état du plateau après le déplacement
     }
