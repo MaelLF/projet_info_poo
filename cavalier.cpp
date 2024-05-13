@@ -145,10 +145,11 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
     }
 }
 
+
 int Cavalier::deplacement(int choix,int range, Playboard& pboard) {
     return this->deplacement(choix,pboard);
 }
 
+int Cavalier::pouvoir (int choix, Playboard& pboard){
 
-
-//TESTETSTTESTESTETSJGDAHGZCH
+}

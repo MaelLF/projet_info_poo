@@ -13,6 +13,8 @@ public:
     int deplacement(int choix, Playboard& board);
     int deplacement(int choix, int range, Playboard& pboard);
 
+    int pouvoir (int choix, Playboard& board);
+
 };
 
 #endif // CAVALIER_HPP
