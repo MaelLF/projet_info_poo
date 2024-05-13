@@ -9,16 +9,17 @@
 #include "obstaclecell.hpp"
 #include "duelcell.hpp"
 #include "playboard.hpp"
+#include "sfml_renderer.hpp"
 #include <iostream>
 #include <memory> // Pour std::shared_ptr
 
 int main() {
+    
     // Création des objets nécessaires
     Cell cellule;
     Piece piece;
     Fou fou(2, 2); // Crée un Fou avec une position (2, 2)
-    Playboard plateau(5, 10);
-    plateau.initPlayboard();
+    Playboard plateau(8, 8);
 
     // Création d'un joueur avec une pièce (Fou) enveloppée dans std::shared_ptr
     std::shared_ptr<Piece> fouPtr = std::make_shared<Fou>(2, 2); // Crée un Fou avec une position (2, 2)
@@ -60,6 +61,41 @@ int main() {
     plateau.initPlayboard();
     plateau.printBoard();
     */
+        plateau.printBoard(); // Affiche l'état du plateau après le déplacement
+    
+    
+    plateau.initPlayboard();
+    plateau.printBoard();
+
+    // Rendu graphique SFML
+    SFMLRenderer render;
+    sf::RenderWindow &window = render.getWindow();
+    //render.waitForExit();
+
+    //sf::RectangleShape shape(sf::Vector2f(100,100));
+    //shape.setFillColor(sf::Color::White);
+    //shape.setPosition(10,10);
+
+    //Boucle fenêtre graphique
+    while (window.isOpen())
+    {
+        sf::Event event;    //Variable pour gérer l'évènement
+        while (window.pollEvent(event))
+        {
+            inputHandler(event, window);
+        }
+
+        //Couleur de la fenêtre
+        window.clear(sf::Color::Black);
+
+        //window.draw(shape);
+        plateau.display(render);
+
+        //Dessiner à l'écran tous les évènements
+        window.display();
+    }  
+
+    
     return 0;
 }
 

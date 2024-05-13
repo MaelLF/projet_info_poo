@@ -1,11 +1,14 @@
-#ifndef playboard_HPP
-#define playboard_HPP
+#ifndef PLAYBOARD_HPP
+#define PLAYBOARD_HPP
 
 #include <iostream>
 #include <vector>
 #include "cell.hpp"
 
 class Joueur;   
+// Déclaration anticipée de la classe SFMLRenderer
+class SFMLRenderer;
+
 class Playboard {
 private:
     int rows;
@@ -15,6 +18,8 @@ private:
 public:
     Playboard(int n, int m);
 
+    int getRows(){return rows;};
+    int getCols(){return cols;};
     void printBoard() const;
     void printBoard(Joueur joueur1, Joueur joueur2) const;
     bool isValidCell(int row, int col) const;
@@ -22,6 +27,10 @@ public:
     Cell getCell(int row, int col) const;
     void initPlayboard();
     int isoccupied(int row, int col, Joueur joueur)const;
+    void display(SFMLRenderer &renderer) ;
 };
+
+
+#include "sfml_renderer.hpp"
 
 #endif

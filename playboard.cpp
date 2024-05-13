@@ -66,7 +66,7 @@ void Playboard::initPlayboard(){
     int i, j, r, status, nbDuel = 0, nbObstacle = 0;
     //Placement des 3 cases Duels
     while(nbDuel < 3){
-        for(i=0; i < rows; i++){
+        for(i=0; i < rows-1; i++){
             for(j=0; j < cols ; j++){
                 r = std::rand() % 100;
                 status = board[i][j].getStatus();
@@ -84,7 +84,7 @@ void Playboard::initPlayboard(){
     }
     //Placement des 10 cases obstacles
     while(nbObstacle < 10){ 
-        for(i=0; i < rows; i++){
+        for(i=0; i < rows-1; i++){
             for(j=0; j < cols ; j++){
                 r = std::rand() % 100;
                 status = board[i][j].getStatus();
@@ -106,4 +106,8 @@ int Playboard::isoccupied(int row,int col,Joueur joueur)const{
             return 1;
         }
     return 0;
+}
+
+void Playboard::display(SFMLRenderer &renderer){
+    renderer.drawPlayboard(*this);
 }
