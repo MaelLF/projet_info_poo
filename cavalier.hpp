@@ -13,9 +13,6 @@ public:
     int deplacement(int choix, Playboard& board);
     int deplacement(int choix, int range, Playboard& pboard);
 
-private:
-    // Méthode pour vérifier si le déplacement est valide pour un Cavalier
-    bool isValidMove(int newX, int newY, Playboard& pboard) const;
 };
 
 #endif // CAVALIER_HPP
