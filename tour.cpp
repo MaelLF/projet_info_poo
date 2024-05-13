@@ -5,10 +5,10 @@ Tour::Tour(){
     name = "Tour";
 }
 
-Tour::Tour(int y, int x){
+Tour::Tour(int x, int y){
     name = "Tour";
-    posy = y;
     posx = x;
+    posy = y;
 }
 
 int Tour::deplacement(int choix, int range, Playboard& pboard){
@@ -16,7 +16,7 @@ int Tour::deplacement(int choix, int range, Playboard& pboard){
     {
     case 0 :
         for( int i=0;i<range+1;i++){
-            if(!pboard.isValidCell(posy-i,posx) || !pboard.getCell(posy-i,posx).getStatus()){
+            if(!pboard.isValidCell(posx,posy-i) && !pboard.getCell(posx,posy-i).getStatus()){
                 printf("deplacement pas fait");
                 return 0;
             }
@@ -28,7 +28,7 @@ int Tour::deplacement(int choix, int range, Playboard& pboard){
 
     case 2 :
         for( int i=0;i<range+1;i++){
-            if(!pboard.isValidCell(posy,posx+i) || !pboard.getCell(posy,posx+i).getStatus()){
+            if(!pboard.isValidCell(posx+i,posy) && !pboard.getCell(posx+i,posy).getStatus()){
                 printf("deplacement pas fait");
                 return 0;
             }
@@ -40,7 +40,7 @@ int Tour::deplacement(int choix, int range, Playboard& pboard){
 
     case 4 :
         for( int i=0;i<range+1;i++){
-            if(!pboard.isValidCell(posy+i,posx) || !pboard.getCell(posy+i,posx).getStatus()){
+            if(!pboard.isValidCell(posx,posy+i) && !pboard.getCell(posx,posy+i).getStatus()){
                 printf("deplacement pas fait");
                 return 0;
             }
@@ -52,7 +52,7 @@ int Tour::deplacement(int choix, int range, Playboard& pboard){
 
     case 6 :
         for( int i=0;i<range+1;i++){
-            if(!pboard.isValidCell(posy, posx-i) || !pboard.getCell(posy, posx-i).getStatus()){
+            if(!pboard.isValidCell(posx-i,posy) && !pboard.getCell(posx-i,posy).getStatus()){
                 printf("deplacement pas fait");
                 return 0;
             }
