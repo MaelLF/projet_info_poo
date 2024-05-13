@@ -1,15 +1,6 @@
 #include "cavalier.hpp"
 #include <iostream>
 
-Cavalier::Cavalier() {
-    name = "Cavalier";
-}
-
-Cavalier::Cavalier(int x, int y) {
-    name = "Cavalier";
-    posx = x;
-    posy = y;
-}
 
 int Cavalier::deplacement(int choix, Playboard& pboard) {
     int newX, newY;
