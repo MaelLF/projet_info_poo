@@ -7,13 +7,13 @@
 class Cavalier : public Piece {
 public:
     Cavalier() { name = "Cavalier"; }
-    Cavalier(int y, int x) { name = "Cavalier"; posy = y; posx = x; }   
+    Cavalier(int x, int y) { name = "Cavalier"; posx = x; posy = y; }   
 
     // Méthode pour déplacer le Cavalier
     int deplacement(int choix, Playboard& board);
     int deplacement(int choix, int range, Playboard& pboard);
 
-    int pouvoir (int pouvoir, int choix,int range, Playboard& board);
+    int pouvoir (int choix, Playboard& board);
 
 };
 

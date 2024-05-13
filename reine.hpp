@@ -3,7 +3,8 @@
 class Reine: public Piece{
     public :
         Reine(){name = "Reine";};
-        Reine(int y, int x){name = "Reine"; posy=y;posx=x;};
+        Reine(int x, int y){name = "Reine"; posx=x;posy=y;};
         virtual void display(){std::cout << name << std::endl;};
         int deplacement(int choix, int range,Playboard& pboard)override;
+
 };
