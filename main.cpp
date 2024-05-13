@@ -25,7 +25,9 @@ int main() {
     Joueur joueur1("mathieu", fouPtr); // Déplace le Fou dans un std::shared_ptr et le passe au Joueur
     std::shared_ptr<Piece> piPtr = std::make_shared<Pion>(0,0);
     Joueur joueur2("victor", piPtr);
-    
+    ObstacleCell cell;
+    plateau.setCell(0,1,cell);
+    plateau.setCell(1,1,cell);
     joueur1.display(); // Affiche les détails du joueur et de sa pièce
     // Ajouter des joueurs au vecteur
     printf("est ce que 2 ,2 est occupée %d \n",plateau.isoccupied(2,2,joueur1));
@@ -44,6 +46,9 @@ int main() {
 
         std::shared_ptr<Piece> cavalierPtr = std::make_shared<Cavalier>(joueur1.my_piece->posx,joueur1.my_piece->posy);
         joueur1.my_piece = cavalierPtr;
+        std::shared_ptr<Piece> cavalierPtr2 = std::make_shared<Cavalier>(0,0);
+        joueur2.my_piece = cavalierPtr2;    
+        joueur2.my_piece->deplacement(3,0,plateau);
 
         
         joueur1.my_piece->deplacement(3,0,plateau);
