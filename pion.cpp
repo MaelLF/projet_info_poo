@@ -1,10 +1,10 @@
 #include "pion.hpp"
 
 int Pion::deplacement(Playboard& pboard){
-    if(!pboard.isValidCell(posx,posy-1) && !pboard.getCell(posx,posy-1).getStatus()){
+    if(!pboard.isValidCell(posy-1, posx) || !pboard.getCell(posy-1, posx).getStatus()){
         return 0;
     }
-    posx = posx-1;
+    posy = posy-1;
     return 1;
 }
 

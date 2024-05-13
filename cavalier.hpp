@@ -7,15 +7,14 @@
 class Cavalier : public Piece {
 public:
     Cavalier() { name = "Cavalier"; }
-    Cavalier(int x, int y) { name = "Cavalier"; posx = x; posy = y; }   
+    Cavalier(int y, int x) { name = "Cavalier"; posy = y; posx = x; }   
 
     // Méthode pour déplacer le Cavalier
     int deplacement(int choix, Playboard& board);
     int deplacement(int choix, int range, Playboard& pboard);
 
-private:
-    // Méthode pour vérifier si le déplacement est valide pour un Cavalier
-    bool isValidMove(int newX, int newY, Playboard& pboard) const;
+    int pouvoir (int pouvoir, int choix,int range, Playboard& board);
+
 };
 
 #endif // CAVALIER_HPP
