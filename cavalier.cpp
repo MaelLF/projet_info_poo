@@ -27,8 +27,6 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 std::cout << "2 haut 1 gauche" << std::endl;
                 return 1 ;
             }
-
-
         case 1:
             // 2 haut 1 droite : Actions à effectuer si choix est égal à 1
             int newX = posx + 1 ;
@@ -147,11 +145,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
     }
 }
 
-bool Cavalier::isValidMove(int newX, int newY, Playboard& pboard) const {
-    int dx = abs(newX - posx);
-    int dy = abs(newY - posy);
-    // Vérifier si le déplacement correspond à l'un des 8 mouvements possibles pour un Cavalier
-    return (dx == 1 && dy == 2) || (dx == 2 && dy == 1);
+int Cavalier::deplacement(int choix,int range, Playboard& pboard) {
+    return this->deplacement(choix,pboard);
 }
 
 
