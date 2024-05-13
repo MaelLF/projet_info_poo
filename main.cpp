@@ -18,6 +18,7 @@ int main() {
     Piece piece;
     Fou fou(2, 2); // Crée un Fou avec une position (2, 2)
     Playboard plateau(5, 10);
+    plateau.initPlayboard();
 
     // Création d'un joueur avec une pièce (Fou) enveloppée dans std::shared_ptr
     std::shared_ptr<Piece> fouPtr = std::make_shared<Fou>(2, 2); // Crée un Fou avec une position (2, 2)
@@ -28,13 +29,16 @@ int main() {
     if (joueur1.my_piece) {
         joueur1.my_piece->deplacement(0, 1, plateau); // Appel de la méthode deplacement() sur la pièce du joueur
         joueur1.display(); // Affiche les détails mis à jour du joueur et de sa pièce
+        std::shared_ptr<Piece> pionPtr = std::make_shared<Pion>(fouPtr->posx,fouPtr->posy);
+        joueur1.my_piece = pionPtr;
+        joueur1.display();
         plateau.printBoard(); // Affiche l'état du plateau après le déplacement
     }
-
+/*
     Playboard plateau(8,20);
     plateau.initPlayboard();
     plateau.printBoard();
-    
+    */
     return 0;
 }
 
