@@ -15,8 +15,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
     switch (choix) {
         case 0:
             // 2 haut 1 gauche : Actions à effectuer si choix est égal à 0
-            int newX = posx - 1 ;
-            int newY = posy - 2 ;
+            newX = posx - 1 ;
+            newY = posy - 2 ;
             if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
@@ -29,8 +29,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
             }
         case 1:
             // 2 haut 1 droite : Actions à effectuer si choix est égal à 1
-            int newX = posx + 1 ;
-            int newY = posy - 2 ;
+            newX = posx + 1 ;
+            newY = posy - 2 ;
             if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
@@ -44,8 +44,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
 
         case 2:
             // 2 droite 1 haut : Actions à effectuer si choix est égal à 2
-            int newX = posx + 2 ;
-            int newY = posy - 1 ;
+            newX = posx + 2 ;
+            newY = posy - 1 ;
             if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
@@ -60,8 +60,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
 
         case 3:
             // 2 droite 1 bas : Actions à effectuer si choix est égal à 3
-            int newX = posx + 2 ;
-            int newY = posy + 1 ;
+            newX = posx + 2 ;
+            newY = posy + 1 ;
             if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
@@ -76,8 +76,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
 
         case 4:
             // Actions à effectuer si choix est égal à 4
-            int newX = posx + 1 ;
-            int newY = posy + 2 ;
+            newX = posx + 1 ;
+            newY = posy + 2 ;
              if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
@@ -92,8 +92,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
 
         case 5:
             // Actions à effectuer si choix est égal à 5
-            int newX = posx - 1 ;
-            int newY = posy + 2 ;
+            newX = posx - 1 ;
+            newY = posy + 2 ;
             if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
@@ -108,8 +108,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
 
         case 6:
             // Actions à effectuer si choix est égal à 6
-            int newX = posx - 2 ;
-            int newY = posy + 1 ;
+            newX = posx - 2 ;
+            newY = posy + 1 ;
             if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
@@ -124,8 +124,8 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
         
         case 7:
             // Actions à effectuer si choix est égal à 7
-            int newX = posx - 2 ;
-            int newY = posy - 1 ;
+            newX = posx - 2 ;
+            newY = posy - 1 ;
                if (!pboard.isValidCell(newX,newY) && !pboard.getCell(newX,newY).getStatus()) {
                 printf("deplacement pas fait");
                 return 0;   
