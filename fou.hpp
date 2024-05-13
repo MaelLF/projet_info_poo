@@ -4,6 +4,6 @@ class Fou : public Piece{
         Fou(){
             name = "Fou";
         }
-        Fou(int x, int y){name = "Fou"; posx=x;posy=y;};
+        Fou(int y, int x){name = "Fou"; posy=y; posx=x;};
         int deplacement(int choix, int range,Playboard& pboard)override;
 };
