@@ -11,6 +11,7 @@ public:
 
     // Méthode pour déplacer le Cavalier
     int deplacement(int choix, Playboard& board);
+    int deplacement(int choix, int range, Playboard& pboard);
 
 private:
     // Méthode pour vérifier si le déplacement est valide pour un Cavalier
