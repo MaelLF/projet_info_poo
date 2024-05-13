@@ -14,5 +14,6 @@ class Piece{
         virtual int deplacement(int choix, int range,Playboard& board){printf("hello");return 0;};
         virtual int deplacement(int choix, Playboard& board){return 0;};
         virtual int deplacement(Playboard& pboard){return 0;};
+        virtual ~Piece() = default;
 };
-#endif
+#endif  
