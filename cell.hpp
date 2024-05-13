@@ -1,7 +1,9 @@
-#include <iostream>
-#include <memory> // Pour std::unique_ptr
 #ifndef cell_H
 #define cell_H
+
+#include <iostream>
+#include <memory> // Pour std::unique_ptr
+
 // Classe abstraite Cell
 class Cell {
 protected:
@@ -12,8 +14,9 @@ protected:
 public:
     virtual ~Cell() = default; // Déstructeur virtuel
     // Méthode virtuelle pure pour afficher le type de la cellule
-    virtual void display(){std::cout << name << std::endl;};
-    int getstatus(){return status;};
+    void display();
+    int getStatus() const;
 };
+
 #endif
 

@@ -1,9 +1,10 @@
+#ifndef playboard_HPP
+#define playboard_HPP
+
 #include "cell.hpp"
 #include <iostream>
 #include <vector>
 
-#ifndef playboard_HPP
-#define playboard_HPP
 
 class Playboard {
 private:
@@ -18,6 +19,7 @@ public:
     bool isValidCell(int row, int col) const;
     void setCell(int row, int col, Cell& cell);
     Cell getCell(int row, int col) const;
+    void initPlayboard();
 };
 
 #endif
