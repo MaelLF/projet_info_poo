@@ -27,8 +27,6 @@ int Cavalier::deplacement(int choix, Playboard& pboard) {
                 std::cout << "2 haut 1 gauche" << std::endl;
                 return 1 ;
             }
-
-
         case 1:
             // 2 haut 1 droite : Actions à effectuer si choix est égal à 1
             int newX = posx + 1 ;
