@@ -7,6 +7,7 @@
 
 class Joueur {
 public:
+    Joueur(){ name ="default";}
     Joueur(const std::string& nom, std::shared_ptr<Piece> piece) : name(nom), my_piece(piece) {}
 
     std::string name;

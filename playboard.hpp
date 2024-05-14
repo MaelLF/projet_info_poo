@@ -16,6 +16,7 @@ private:
     std::vector<std::vector<Cell>> board;
 
 public:
+    Playboard(){rows = 0; cols = 0;}
     Playboard(int n, int m);
 
     int getRows(){return rows;};
