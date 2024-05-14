@@ -1,5 +1,6 @@
 #include "piece.hpp"
-
+#ifndef pion_H
+#define pion_H
 class Pion : public Piece{
     public :
         Pion(){ name = "Pion";};
@@ -8,3 +9,4 @@ class Pion : public Piece{
         int deplacement(Playboard& pboard)override;
         int deplacement(int choix, int range ,Playboard& pboard)override;
 };
+#endif
