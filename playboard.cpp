@@ -65,13 +65,13 @@ void Playboard::initPlayboard(){
     srand(time(NULL));
     int i, j, r, status, nbDuel = 0, nbObstacle = 0;
     //Placement des 3 cases Duels
-    while(nbDuel < 3){
-        for(i=0; i < rows-1; i++){
-            for(j=0; j < cols ; j++){
+    while(nbDuel < NB_DUEL){
+        for(i=0; i < rows; i++){
+            for(j=1; j < cols-1; j++){
                 r = std::rand() % 100;
                 status = board[i][j].getStatus();
                 if(status != 2){
-                    if(r || nbDuel >= 3){
+                    if(r || nbDuel >= NB_DUEL){
                         board[i][j] = EmptyCell();
                     }else{
                         board[i][j] = DuelCell();
@@ -83,13 +83,13 @@ void Playboard::initPlayboard(){
         }
     }
     //Placement des 10 cases obstacles
-    while(nbObstacle < 10){ 
-        for(i=0; i < rows-1; i++){
-            for(j=0; j < cols ; j++){
+    while(nbObstacle < NB_OBSTACLES){ 
+        for(i=0; i < rows; i++){
+            for(j=1; j < cols-1; j++){
                 r = std::rand() % 100;
                 status = board[i][j].getStatus();
                 if(status != 2 && status != 0){
-                    if(r || nbObstacle >= 10){
+                    if(r || nbObstacle >= NB_OBSTACLES){
                         board[i][j] = EmptyCell();
                     }else{
                         board[i][j] = ObstacleCell();

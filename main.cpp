@@ -64,37 +64,37 @@ int main() {
 //     */
 //         plateau.printBoard(); // Affiche l'état du plateau après le déplacement
     
-    
-//     plateau.initPlayboard();
-//     plateau.printBoard();
+    Playboard plateau(8,16);
+    plateau.initPlayboard();
+    plateau.printBoard();
 
-//     // Rendu graphique SFML
-//     SFMLRenderer render;
-//     sf::RenderWindow &window = render.getWindow();
-//     //render.waitForExit();
+    //Rendu graphique SFML
+    SFMLRenderer render;
+    sf::RenderWindow &window = render.getWindow();
+    //render.waitForExit();
 
-//     //sf::RectangleShape shape(sf::Vector2f(100,100));
-//     //shape.setFillColor(sf::Color::White);
-//     //shape.setPosition(10,10);
+    //sf::RectangleShape shape(sf::Vector2f(100,100));
+    //shape.setFillColor(sf::Color::White);
+    //shape.setPosition(10,10);
 
-//     //Boucle fenêtre graphique
-//     while (window.isOpen())
-//     {
-//         sf::Event event;    //Variable pour gérer l'évènement
-//         while (window.pollEvent(event))
-//         {
-//             inputHandler(event, window);
-//         }
+    //Boucle fenêtre graphique
+    while (window.isOpen())
+    {
+        sf::Event event;    //Variable pour gérer l'évènement
+        while (window.pollEvent(event))
+        {
+            inputHandler(event, window);
+        }
 
-//         //Couleur de la fenêtre
-//         window.clear(sf::Color::Black);
+        //Couleur de la fenêtre
+        window.clear(sf::Color::Black);
 
-//         //window.draw(shape);
-//         plateau.display(render);
+        //window.draw(shape);
+        plateau.display(render);
 
-//         //Dessiner à l'écran tous les évènements
-//         window.display();
-//     }  
+        //Dessiner à l'écran tous les évènements
+        window.display();
+    }  
 
     //Test ratio + tour d'un joueur
     Jeu jeu(8,16);
