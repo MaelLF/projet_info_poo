@@ -13,7 +13,7 @@ public:
     std::string name;
     std::shared_ptr<Piece> my_piece;
 
-    void display() const {
+    void print() const {
         if (my_piece) {
             std::cout << "Joueur : " << name << " Piece : " << my_piece->getname() 
                       << " Position actuelle: x:" << my_piece->posx << " y:" << my_piece->posy << std::endl;

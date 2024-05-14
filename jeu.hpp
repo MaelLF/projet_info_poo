@@ -21,7 +21,7 @@ public:
         playboard = pboard;
         playboard.initPlayboard();
     }
-
+    void tour(int nb_joueur);
     Joueur joueur1;  // First player
     Joueur joueur2;  // Second player
     Playboard playboard;
