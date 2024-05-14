@@ -8,5 +8,6 @@ class Pion : public Piece{
         void print()override{std::cout << name << std::endl;};
         int deplacement(Playboard& pboard)override;
         int deplacement(int choix, int range ,Playboard& pboard)override;
+        void convertXYtoChoiceRange(int i, int j,int* choice,int* range)override;
 };
 #endif

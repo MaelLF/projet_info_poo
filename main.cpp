@@ -96,7 +96,7 @@ int main() {
 //         window.display();
 //     }  
 
-    Jeu jeu(8,8);
+    Jeu jeu(8,16);
     jeu.joueur1.print();
     jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
     jeu.joueur1.my_piece->posx = 2;
