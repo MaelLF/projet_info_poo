@@ -1,11 +1,11 @@
 #include "pion.hpp"
 
 int Pion::deplacement(Playboard& pboard){
-    if(!pboard.isValidCell(posx,posy+1) || !pboard.getCell(posx,posy+1).getStatus()){
+    if(!pboard.isValidCell(posx-1,posy) || !pboard.getCell(posx-1,posy).getStatus()){
         printf("déplacement pas possible \n");
         return 0;
     }
-    posy = posy+1;
+    posx = posx-1;
     return 1;
 }
 
