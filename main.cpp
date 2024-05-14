@@ -97,7 +97,9 @@ int main() {
 //     }  
 
     Jeu jeu(8,8);
-    jeu.joueur1.display();
+    jeu.joueur1.print();
+    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    jeu.tour(1);
     jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
     return 0;
 }

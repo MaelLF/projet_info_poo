@@ -9,7 +9,7 @@ class Piece{
         std::string name;
         int posx;
         int posy;
-        virtual void display(){std::cout << name << std::endl;};
+        virtual void print(){std::cout << name << std::endl;};
         virtual std::string getname(){return name;};
         virtual int deplacement(int choix, int range,Playboard& board){printf("hello");return 0;};
         virtual int deplacement(int choix, Playboard& board){return 0;};
