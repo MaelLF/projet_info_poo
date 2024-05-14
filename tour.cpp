@@ -1,15 +1,6 @@
 #include "tour.hpp"
 #include <iostream>
 
-Tour::Tour(){
-    name = "Tour";
-}
-
-Tour::Tour(int x, int y){
-    name = "Tour";
-    posx = x;
-    posy = y;
-}
 
 int Tour::deplacement(int choix, int range, Playboard& pboard){
     switch (choix)

@@ -1,16 +1,6 @@
 #include "reine.hpp"
 #include <iostream>
 
-Reine::Reine(){
-    name = "Reine";
-}
-
-Reine::Reine(int x, int y){
-    name = "Reine";
-    posx = x;
-    posy = y;
-}
-
 int Reine ::deplacement(int choix, int range,Playboard& pboard){
     switch (choix)
     {
