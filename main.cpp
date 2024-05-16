@@ -96,7 +96,10 @@ int main() {
 //         window.display();
 //     }  
 
+    //Test ratio + tour d'un joueur
     Jeu jeu(8,16);
+    int choice = 0;
+    int range= 0;
     jeu.joueur1.print();
     jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
     jeu.joueur1.my_piece->posx = 2;
@@ -104,6 +107,22 @@ int main() {
     jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
     jeu.tour(1);
     jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    jeu.joueur1.print();
+    jeu.joueur1.changerpiece(2);
+    jeu.joueur2.changerpiece(2);
+    jeu.joueur1.print();
+    jeu.joueur2.print();
+
+    std::shared_ptr<Piece> reinePtr2 = std::make_shared<Reine>(jeu.joueur1.my_piece->posy,jeu.joueur1.my_piece->posx);
+    
+    jeu.joueur1.my_piece = reinePtr2;  
+    jeu.joueur1.print();
+    jeu.joueur1.my_piece->convertXYtoChoiceRange(1,1,&choice, &range);
+    
+    jeu.joueur1.my_piece->deplacement(choice,range,jeu.playboard);
+    jeu.joueur1.print();
+    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    
     return 0;
 }
 
