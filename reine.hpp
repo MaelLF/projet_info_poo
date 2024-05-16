@@ -1,5 +1,7 @@
 #include "piece.hpp"
 
+#ifndef Reine_H
+#define Reine_H
 class Reine: public Piece{
     public :
         Reine(){name = "Reine";};
@@ -7,3 +9,5 @@ class Reine: public Piece{
         int deplacement(int choix, int range,Playboard& pboard)override;
 
 };
+
+#endif
