@@ -6,15 +6,18 @@
 #include "piece.hpp"
 #include "pion.hpp"
 #include "cavalier.hpp"
+#include "reine.hpp"
+#include "fou.hpp"
+#include "tour.hpp"
 
 class Joueur {
 public:
-    Joueur(){ name ="default";}
+    Joueur(){ name ="default"; point = 0;}
     Joueur(const std::string& nom, std::shared_ptr<Piece> piece) : name(nom), my_piece(piece) {}
 
     std::string name;
     std::shared_ptr<Piece> my_piece;
-
+    int point;
     void print() const {
         if (my_piece) {
             std::cout << "Joueur : " << name << " Piece : " << my_piece->getname() 
@@ -33,6 +36,25 @@ public:
             
             case 2:
                 new_piece = std::make_shared<Cavalier>(my_piece->posx, my_piece->posy);
+                break;
+
+            case 3:
+                new_piece = std::make_shared<Tour>(my_piece->posx, my_piece->posy);
+                break;
+
+            case 4:
+                new_piece = std::make_shared<Fou>(my_piece->posx, my_piece->posy);
+                break;
+
+            case 5:
+                if (this->point == 3){
+                new_piece = std::make_shared<Reine>(my_piece->posx, my_piece->posy);
+                break;
+                }
+                printf("Vous n'avez pas les points pour faire cette action \n");
+                break;
+            
+            default :
                 break;
         }
 

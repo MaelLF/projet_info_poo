@@ -1,4 +1,6 @@
 #include "piece.hpp"
+#ifndef fou_H
+#define fou_H
 class Fou : public Piece{
     public :
         Fou(){
@@ -7,3 +9,4 @@ class Fou : public Piece{
         Fou(int x, int y){name = "Fou"; posx=x;posy=y;};
         int deplacement(int choix, int range,Playboard& pboard)override;
 };
+#endif
