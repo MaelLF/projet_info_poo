@@ -98,33 +98,49 @@ int main() {
 
     //Test ratio + tour d'un joueur
     Jeu jeu(8,16);
-    int choice = 0;
-    int range= 0;
-    jeu.joueur1.print();
-    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
-    jeu.joueur1.my_piece->posx = 2;
-    jeu.joueur1.my_piece->posy = 1;
-    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
-    jeu.tour(1);
-    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
-    jeu.joueur1.print();
-    jeu.joueur1.changerpiece(2);
-    jeu.joueur2.changerpiece(2);
-    jeu.joueur1.print();
-    jeu.joueur2.print();
+    // int choice = 0;
+    // int range= 0;
+    // jeu.joueur1.print();
+    // jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    // jeu.joueur1.my_piece->posx = 2;
+    // jeu.joueur1.my_piece->posy = 1;
+    // jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    // jeu.tour(1);
+    // jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    // jeu.joueur1.print();
+    // jeu.joueur1.changerpiece(2);
+    // jeu.joueur2.changerpiece(2);
+    // jeu.joueur1.print();
+    // jeu.joueur2.print();
 
-    std::shared_ptr<Piece> reinePtr2 = std::make_shared<Reine>(jeu.joueur1.my_piece->posx,jeu.joueur1.my_piece->posy);
+    // std::shared_ptr<Piece> reinePtr2 = std::make_shared<Reine>(jeu.joueur1.my_piece->posx,jeu.joueur1.my_piece->posy);
     
-    jeu.joueur1.my_piece = reinePtr2;  
-    jeu.joueur1.print();
-    jeu.joueur1.my_piece->convertXYtoChoiceRange(4,3,&choice, &range);
+    // jeu.joueur1.my_piece = reinePtr2;  
+    // jeu.joueur1.print();
+    // jeu.joueur1.my_piece->convertXYtoChoiceRange(4,3,&choice, &range);
     
-    printf("choice %d range %d state %d \n",choice,range,jeu.joueur1.my_piece->deplacement(choice,range,jeu.playboard));
+    // printf("choice %d range %d state %d \n",choice,range,jeu.joueur1.my_piece->deplacement(choice,range,jeu.playboard));
+    // jeu.joueur1.print();
+    // jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    // jeu.joueur1.changerpiece(1);
+    // jeu.tour(1);
+    // jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    int nb_tour=0;
+    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    // jeu.joueur1.changerpiece(2);
     jeu.joueur1.print();
-    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
-    jeu.joueur1.changerpiece(1);
-    jeu.tour(1);
-    jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+    while(1){
+        printf("Tour N° %d \n",nb_tour);
+        jeu.tour(1);
+        jeu.joueur1.print();
+        jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
+        nb_tour++;
+        if (nb_tour%3==0){
+            DuelCell cel;
+            int res = cel.duel();
+            jeu.recompense(res);
+        }
+    }
     return 0;
 }
 

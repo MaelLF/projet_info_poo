@@ -11,9 +11,20 @@ public:
         status = 2;
         }
     // Méthode spécifique pour déclencher un duel
-    void duel() const {
+    int duel() const {
         std::cout << "Duel initiated!" << std::endl;
-        //mettre la classe duel à l'intérieur
+        int res =1;
+        int sto =0;
+        while(res==sto){
+            res = rand()%6 +1 ; //dé 6 faces
+            sto = rand()%6 +1 ;
+        }
+        if(res> sto){
+            printf("j1 gagne \n");
+            return 0;
+        }
+        printf("j2 gagne \n");
+        return 1;
     }
 };
 
