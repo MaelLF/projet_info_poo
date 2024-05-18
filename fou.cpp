@@ -6,11 +6,11 @@ int Fou::deplacement(int choix,int range,Playboard& pboard){
     {
     case 1 :
         for( int i=0;i<range+1;i++){
-            if(!pboard.isValidCell(posx+i,posy-i) || !pboard.getCell(posx+i,posy-i).getStatus()){
+            if(!pboard.isValidCell(posx-i,posy+i) || !pboard.getCell(posx-i,posy+i).getStatus()){
                 return 0;
             }
-            posx = posx+range;
-            posy = posy-range;
+            posx = posx-range;
+            posy = posy+range;
             printf("deplacement en haut a droite fait");
             return 1;
         }
@@ -28,12 +28,12 @@ int Fou::deplacement(int choix,int range,Playboard& pboard){
 
     case 5 :
         for( int i=0;i<range+1;i++){
-            if(!pboard.isValidCell(posx-i,posy+i) || !pboard.getCell(posx-i,posy+i).getStatus()){
+            if(!pboard.isValidCell(posx+i,posy-i) || !pboard.getCell(posx+i,posy-i).getStatus()){
                 return 0;
             }
         }
-            posx = posx-range;
-            posy = posy+range;
+            posx = posx+range;
+            posy = posy-range;
             printf("deplacement en bas a gauche fait");
             return 1;
     

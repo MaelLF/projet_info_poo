@@ -28,7 +28,7 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
     else{
         haut = 1;
     }
-
+    printf("%d %d \n",haut,droite);
     if (haut==1){
         switch (droite)
         {
@@ -39,9 +39,11 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
         case -1:
             *choice = 7;
             *range = posx-i;
+            break;
         case 0:
             *choice=0;
             *range = posx-i;
+            break;
         }
     }
     else if(haut==-1){
@@ -54,10 +56,11 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
         case -1:
             *choice = 5;
             *range = i-posx;
+            break;
         case 0:
             *choice=4;
             *range = i-posx;
-
+            break;
         }
     }
     else if(haut==0){
@@ -70,13 +73,11 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
         case -1:
             *choice = 6;
             *range = posy-j;
+            break;
         case 0:
             *choice=-1;
             *range = 0;
-        
-        default : 
-            *choice =-1;
-            *range = 0;
+            break;
         }
     }
 
