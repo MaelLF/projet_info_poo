@@ -6,7 +6,7 @@ class Pion : public Piece{
         Pion(){ name = "Pion";};
         Pion(int x, int y){name = "Pion"; posx=x;posy=y;};
         void print()override{std::cout << name << std::endl;};
-        int deplacement(Playboard& pboard)override;
+        int deplacement(int choix,Playboard& pboard)override;
         int deplacement(int choix, int range ,Playboard& pboard)override;
         void convertXYtoChoiceRange(int i, int j,int* choice,int* range)override;
 };

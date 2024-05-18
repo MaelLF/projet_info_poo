@@ -35,11 +35,12 @@ int Tour::deplacement(int choix, int range, Playboard& pboard){
                 printf("deplacement pas fait");
                 return 0;
             }
+        }
             posx = posx+range;
             posy = posy;
             printf("deplacement en bas fait");
             return 1;
-        }
+        
 
     case 6 :
         for( int i=0;i<range+1;i++){

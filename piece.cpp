@@ -1,5 +1,5 @@
 #include "piece.hpp"
-
+#define MAX_RANGE 3
 void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
     int droite;
     int haut;
@@ -79,6 +79,11 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
             *range = 0;
             break;
         }
+    }
+
+    if(*range>MAX_RANGE){
+        *choice = -1;
+        *range = 0;
     }
 
 }

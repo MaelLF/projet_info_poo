@@ -9,11 +9,12 @@ int Fou::deplacement(int choix,int range,Playboard& pboard){
             if(!pboard.isValidCell(posx-i,posy+i) || !pboard.getCell(posx-i,posy+i).getStatus()){
                 return 0;
             }
+        }
             posx = posx-range;
             posy = posy+range;
             printf("deplacement en haut a droite fait");
             return 1;
-        }
+        
 
     case 3 :
         for( int i=0;i<range+1;i++){

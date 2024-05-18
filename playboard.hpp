@@ -30,6 +30,7 @@ public:
     void setCell(int row, int col, Cell& cell);
     Cell getCell(int row, int col) const;
     void initPlayboard();
+    int getStatus(int row, int col)const;
     int isoccupied(int row, int col, Joueur joueur)const;
     void display(SFMLRenderer &renderer);
 };

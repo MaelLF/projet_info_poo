@@ -61,6 +61,10 @@ Cell Playboard::getCell(int row, int col) const {
     }
 }
 
+int Playboard::getStatus(int row, int col) const{
+    return board[row][col].getStatus();
+}
+
 void Playboard::initPlayboard(){
     srand(time(NULL));
     int i, j, r, status, nbDuel = 0, nbObstacle = 0;
