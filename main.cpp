@@ -138,7 +138,8 @@ int main() {
         if (nb_tour%3==0){
             DuelCell cel;
             int res = cel.duel();
-            jeu.recompense(res);
+            jeu.recompense(0);
+            jeu.joueur1.print();
         }
     }
     return 0;
