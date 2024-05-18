@@ -22,11 +22,12 @@ int Reine ::deplacement(int choix, int range,Playboard& pboard){
                 printf("deplacement pas fait");
                 return 0;
             }
+        }
             posx = posx-range;
             posy = posy+range;
             printf("deplacement en haut à droite fait");
             return 1;
-        }
+        
 
     case 2 :
         for( int i=0;i<range+1;i++){
@@ -58,11 +59,12 @@ int Reine ::deplacement(int choix, int range,Playboard& pboard){
                 printf("deplacement pas fait");
                 return 0;
             }
+        }
             posx = posx+range;
             posy = posy;
             printf("deplacement en bas fait");
             return 1;
-        }
+        
 
     case 5 :
         for( int i=0;i<range+1;i++){
