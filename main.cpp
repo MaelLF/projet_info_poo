@@ -117,7 +117,7 @@ int main() {
     
     jeu.joueur1.my_piece = reinePtr2;  
     jeu.joueur1.print();
-    jeu.joueur1.my_piece->convertXYtoChoiceRange(5,3,&choice, &range);
+    jeu.joueur1.my_piece->convertXYtoChoiceRange(4,3,&choice, &range);
     
     printf("choice %d range %d state %d \n",choice,range,jeu.joueur1.my_piece->deplacement(choice,range,jeu.playboard));
     jeu.joueur1.print();

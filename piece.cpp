@@ -3,6 +3,12 @@
 void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
     int droite;
     int haut;
+    if(abs(j-posy)!=abs(i-posx) && i-posx!=0 && j-posy != 0){ //si pas diagonale ou ligne
+        printf("mauvais deplacement \n");
+        *choice = -1; *range =0; 
+        return;
+    } 
+
     if(j-posy>0){
         droite = 1;
     }
