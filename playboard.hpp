@@ -31,7 +31,7 @@ public:
     Cell getCell(int row, int col) const;
     void initPlayboard();
     int isoccupied(int row, int col, Joueur joueur)const;
-    void display(SFMLRenderer &renderer) ;
+    void display(SFMLRenderer &renderer);
 };
 
 

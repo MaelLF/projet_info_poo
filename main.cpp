@@ -69,9 +69,11 @@ int main() {
     plateau.printBoard();
 
     //Rendu graphique SFML
-    SFMLRenderer render;
-    sf::RenderWindow &window = render.getWindow();
-    //render.waitForExit();
+    SFMLRenderer renderer;
+    sf::RenderWindow &window = renderer.getWindow();
+    window.setVerticalSyncEnabled(true);	
+
+    //renderer.waitForExit();
 
     //sf::RectangleShape shape(sf::Vector2f(100,100));
     //shape.setFillColor(sf::Color::White);
@@ -83,14 +85,14 @@ int main() {
         sf::Event event;    //Variable pour gérer l'évènement
         while (window.pollEvent(event))
         {
-            inputHandler(event, window);
+            inputHandler(event, renderer, plateau);
         }
 
         //Couleur de la fenêtre
         window.clear(sf::Color::Black);
 
         //window.draw(shape);
-        plateau.display(render);
+        plateau.display(renderer);
 
         //Dessiner à l'écran tous les évènements
         window.display();
