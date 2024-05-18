@@ -32,23 +32,28 @@ public:
         switch (piecename) {
             case 1:
                 new_piece = std::make_shared<Pion>(my_piece->posx, my_piece->posy);
+                printf("piece changé pour un pion \n");
                 break;
             
             case 2:
                 new_piece = std::make_shared<Cavalier>(my_piece->posx, my_piece->posy);
+                printf("piece changé pour un Cavalier \n");
                 break;
 
             case 3:
                 new_piece = std::make_shared<Tour>(my_piece->posx, my_piece->posy);
+                printf("piece changé pour une Tour \n");
                 break;
 
             case 4:
                 new_piece = std::make_shared<Fou>(my_piece->posx, my_piece->posy);
+                printf("piece changé pour un Fou \n");
                 break;
 
             case 5:
                 if (this->point == 3){
                 new_piece = std::make_shared<Reine>(my_piece->posx, my_piece->posy);
+                this->point = this->point-3; 
                 break;
                 }
                 printf("Vous n'avez pas les points pour faire cette action \n");
