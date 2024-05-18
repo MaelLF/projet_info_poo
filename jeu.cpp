@@ -25,6 +25,7 @@ void Jeu::tour(int nb_joueur){
         std::cout << "Saisir j : ";
         std::cin >> j;
         joueur->my_piece->convertXYtoChoiceRange(i,j, &choice, &range);
+        printf("choix%d range%d\n",choice,range);
         dep = joueur->my_piece->deplacement(choice,range,playboard);
     }
         Cell celule =playboard.getCell(joueur->my_piece->posx,joueur->my_piece->posx);
