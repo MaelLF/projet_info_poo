@@ -36,13 +36,16 @@ void Pion::display(SFMLRenderer &renderer, int j){
     renderer.drawPion(*this, j);
 }
 
-int Pion::pouvoir(int choix, Piece& piece_adverse, Playboard& pboard) {
+int Pion::pouvoir(Piece& piece_adverse, Playboard& pboard) {
     // Lancer d'un dé pour déterminer le pouvoir utilisé
     int dice_roll = std::rand() % 6 + 1;
-
+    int choice;
+    int range;
+    //FONCTION MATTHIEU RÉCUP I et J
     // Pouvoir 1 : Avancer d'une case et faire reculer le joueur adverse d'une case 
     if (dice_roll == 1 || dice_roll == 3 || dice_roll == 5) {
-        if (this->deplacement(choix, pboard)) {
+        this->convertXYtoChoiceRange (i,j,&choice,&range)
+        if (this->deplacement(choice,pboard)) {
             if (piece_adverse.posy + 1 < pboard.getCols()) {
                 piece_adverse.posy += 1; // Faire reculer le joueur adverse d'une case
             }
