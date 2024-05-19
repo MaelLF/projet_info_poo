@@ -145,3 +145,7 @@ int Cavalier::deplacement(int choix,int range, Playboard& pboard) {
 int Cavalier::pouvoir (int choix, Playboard& pboard){
 
 }
+
+void Cavalier::display(SFMLRenderer &renderer, int j){
+    renderer.drawCavalier(*this, j);
+}

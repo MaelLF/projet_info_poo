@@ -64,39 +64,11 @@ int main() {
 //     */
 //         plateau.printBoard(); // Affiche l'état du plateau après le déplacement
     
-    Playboard plateau(8,16);
-    plateau.initPlayboard();
-    plateau.printBoard();
-
     //Rendu graphique SFML
     SFMLRenderer renderer;
     sf::RenderWindow &window = renderer.getWindow();
     window.setVerticalSyncEnabled(true);	
 
-    //renderer.waitForExit();
-
-    //sf::RectangleShape shape(sf::Vector2f(100,100));
-    //shape.setFillColor(sf::Color::White);
-    //shape.setPosition(10,10);
-
-    //Boucle fenêtre graphique
-    while (window.isOpen())
-    {
-        sf::Event event;    //Variable pour gérer l'évènement
-        while (window.pollEvent(event))
-        {
-            inputHandler(event, renderer, plateau);
-        }
-
-        //Couleur de la fenêtre
-        window.clear(sf::Color::Black);
-
-        //window.draw(shape);
-        plateau.display(renderer);
-
-        //Dessiner à l'écran tous les évènements
-        window.display();
-    }  
 
     //Test ratio + tour d'un joueur
     Jeu jeu(8,16);
@@ -131,6 +103,29 @@ int main() {
     jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
     // jeu.joueur1.changerpiece(2);
     jeu.joueur1.print();
+
+    //Boucle fenêtre graphique
+    while (window.isOpen())
+    {
+        sf::Event event;    //Variable pour gérer l'évènement
+        while (window.pollEvent(event))
+        {
+            inputHandler(event, renderer, jeu.playboard);
+        }
+
+        //Couleur de la fenêtre
+        window.clear(sf::Color::Black);
+
+        //window.draw(shape);
+        jeu.playboard.display(renderer);
+        jeu.joueur1.my_piece->display(renderer, 1);
+        jeu.joueur2.my_piece->display(renderer, 2);
+
+        //Dessiner à l'écran tous les évènements
+        window.display();
+    }  
+
+    /*
     while(1){
         printf("Tour N° %d \n",nb_tour);
         jeu.tour(1);
@@ -144,6 +139,8 @@ int main() {
             jeu.joueur1.print();
         }
     }
+    */
+    
     return 0;
 }
 

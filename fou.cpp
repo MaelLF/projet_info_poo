@@ -53,3 +53,7 @@ int Fou::deplacement(int choix,int range,Playboard& pboard){
     }
     return 0;
 }
+
+void Fou::display(SFMLRenderer &renderer, int j){
+    renderer.drawFou(*this, j);
+}

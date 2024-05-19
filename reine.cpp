@@ -104,3 +104,7 @@ int Reine ::deplacement(int choix, int range,Playboard& pboard){
         }
     return 0;
 }
+
+void Reine::display(SFMLRenderer &renderer, int j){
+    renderer.drawReine(*this, j);
+}

@@ -1,7 +1,7 @@
+#include "piece.hpp"
 #ifndef CAVALIER_HPP
 #define CAVALIER_HPP
 
-#include "piece.hpp"
 #include "playboard.hpp" // Assurez-vous d'inclure le fichier Playboard pour pouvoir utiliser la classe Playboard
 
 class Cavalier : public Piece {
@@ -14,6 +14,8 @@ public:
     int deplacement(int choix, int range, Playboard& pboard);
 
     int pouvoir (int choix, Playboard& board);
+
+    void display(SFMLRenderer &renderer, int j) override;
 
 };
 

@@ -3,6 +3,10 @@
 #include "playboard.hpp"
 #ifndef piece_H
 #define piece_H
+
+// Déclaration anticipée de la classe SFMLRenderer
+class SFMLRenderer;
+
 class Piece{
     public :
         Piece(){name = "Piece";};
@@ -16,5 +20,9 @@ class Piece{
         virtual int deplacement(Playboard& pboard){return 0;};
         virtual void convertXYtoChoiceRange(int i, int j,int* choice,int* range);
         virtual ~Piece() = default;
+        virtual void display(SFMLRenderer &renderer, int j) = 0;
 };
+
+#include "sfml_renderer.hpp"
+
 #endif  

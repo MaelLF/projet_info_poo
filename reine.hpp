@@ -7,6 +7,7 @@ class Reine: public Piece{
         Reine(){name = "Reine";};
         Reine(int x, int y){name = "Reine"; posy=y;posx=x;};
         int deplacement(int choix, int range,Playboard& pboard)override;
+        void display(SFMLRenderer &renderer, int j) override;
 
 };
 

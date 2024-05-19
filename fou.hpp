@@ -8,5 +8,6 @@ class Fou : public Piece{
         }
         Fou(int x, int y){name = "Fou"; posx=x;posy=y;};
         int deplacement(int choix, int range,Playboard& pboard)override;
+        void display(SFMLRenderer &renderer, int j) override;
 };
 #endif

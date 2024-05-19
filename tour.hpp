@@ -6,5 +6,6 @@ class Tour : public Piece{
         Tour(){name = "Tour";};
         Tour(int x, int y){name = "Tour";posx=x;posy=y;};
         int deplacement(int choix, int range,Playboard& pboard)override;
+        void display(SFMLRenderer &renderer, int j) override;
 };
 #endif

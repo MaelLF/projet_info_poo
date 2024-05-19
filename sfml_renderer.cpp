@@ -13,30 +13,55 @@ SFMLRenderer::SFMLRenderer()
     //Création d'un texte
     txt.setFont(font);
     setText(txt, "Hello");
-
     
     // Créer une texture à partir de l'image
     texture_Screen.loadFromFile("Pictures/Screen.jpeg");
     texture_Back.loadFromFile("Pictures/Back.jpeg");
     texture_Back2.loadFromFile("Pictures/Back2.jpg");
+    //Wooden pieces textures
     texture_WPawn.loadFromFile("Pictures/WoodenPieces/Pawn.png");
     texture_WKnight.loadFromFile("Pictures/WoodenPieces/Knight.png");
     texture_WBishop.loadFromFile("Pictures/WoodenPieces/Bishop.png");
     texture_WRook.loadFromFile("Pictures/WoodenPieces/Rook.png");
     texture_WQueen.loadFromFile("Pictures/WoodenPieces/Queen.png");
     texture_WKing.loadFromFile("Pictures/WoodenPieces/King.png");
+    //White pieces textures
+    texture_Pawn.loadFromFile("Pictures/WhitePieces/Pawn.png");
+    texture_Knight.loadFromFile("Pictures/WhitePieces/Knight.png");
+    texture_Bishop.loadFromFile("Pictures/WhitePieces/Bishop.png");
+    texture_Rook.loadFromFile("Pictures/WhitePieces/Rook.png");
+    texture_Queen.loadFromFile("Pictures/WhitePieces/Queen.png");
+    //Black pieces textures
+    texture_BPawn.loadFromFile("Pictures/BlackPieces/Pawn.png");
+    texture_BKnight.loadFromFile("Pictures/BlackPieces/Knight.png");
+    texture_BBishop.loadFromFile("Pictures/BlackPieces/Bishop.png");
+    texture_BRook.loadFromFile("Pictures/BlackPieces/Rook.png");
+    texture_BQueen.loadFromFile("Pictures/BlackPieces/Queen.png");
 
     // Créer un sprite avec la texture
     sprite_Screen.setTexture(texture_Screen);
     sprite_Back.setTexture(texture_Back);
     sprite_Back2L.setTexture(texture_Back2);
     sprite_Back2R.setTexture(texture_Back2);
+    //Wooden pieces sprites
     sprite_WPawn.setTexture(texture_WPawn);
     sprite_WKnight.setTexture(texture_WKnight);
     sprite_WBishop.setTexture(texture_WBishop);
     sprite_WRook.setTexture(texture_WRook);
     sprite_WQueen.setTexture(texture_WQueen);
     sprite_WKing.setTexture(texture_WKing);
+    //White pieces sprites
+    sprite_Pawn.setTexture(texture_Pawn);
+    sprite_Knight.setTexture(texture_Knight);
+    sprite_Bishop.setTexture(texture_Bishop);
+    sprite_Rook.setTexture(texture_Rook);
+    sprite_Queen.setTexture(texture_Queen);
+    //Black pieces sprites
+    sprite_BPawn.setTexture(texture_BPawn);
+    sprite_BKnight.setTexture(texture_BKnight);
+    sprite_BBishop.setTexture(texture_BBishop);
+    sprite_BRook.setTexture(texture_BRook);
+    sprite_BQueen.setTexture(texture_BQueen);
 
     //Screen
     sprite_Screen.setScale(0.63,0.56);
@@ -66,6 +91,20 @@ SFMLRenderer::SFMLRenderer()
     sprite_WRook.setPosition(900,400);
     sprite_WQueen.setPosition(900,500);
     sprite_WKing.setPosition(900,600);
+
+    //White Pieces
+    sprite_Pawn.setScale(1.56,1.56);
+    sprite_Knight.setScale(1.56,1.56);
+    sprite_Bishop.setScale(1.56,1.56);
+    sprite_Rook.setScale(1.56,1.56);
+    sprite_Queen.setScale(1.56,1.56);
+
+    //Black Pieces
+    sprite_BPawn.setScale(1.56,1.56);
+    sprite_BKnight.setScale(1.56,1.56);
+    sprite_BBishop.setScale(1.56,1.56);
+    sprite_BRook.setScale(1.56,1.56);
+    sprite_BQueen.setScale(1.56,1.56);
 }
 
 SFMLRenderer::~SFMLRenderer()
@@ -133,6 +172,66 @@ void SFMLRenderer::drawPlayboard(Playboard &playboard){
     }
 
     window->draw(txt);
+}
+
+void SFMLRenderer::drawPion(Pion& pion, int j){
+    if(j == 1){
+        sprite_Pawn.setPosition(pion.posx*CELL_SIZE, pion.posy*CELL_SIZE);
+        window->draw(sprite_Pawn);
+    }else if(j == 2){
+        sprite_BPawn.setPosition(pion.posx*CELL_SIZE, pion.posy*CELL_SIZE);
+        window->draw(sprite_BPawn);
+    }else{
+        std::cout << "Erreur : j dans drawPion(). Choix de joueur invalide" << std::endl;
+    }
+}
+
+void SFMLRenderer::drawCavalier(Cavalier& cavalier, int j){
+    if(j == 1){
+        sprite_Knight.setPosition(cavalier.posx*CELL_SIZE, cavalier.posy*CELL_SIZE);
+        window->draw(sprite_Knight);
+    }else if(j == 2){
+        sprite_BKnight.setPosition(cavalier.posx*CELL_SIZE, cavalier.posy*CELL_SIZE);
+        window->draw(sprite_BKnight);
+    }else{
+        std::cout << "Erreur : j dans drawCavalier(). Choix de joueur invalide" << std::endl;
+    }
+}
+
+void SFMLRenderer::drawFou(Fou &fou, int j){
+    if(j == 1){
+        sprite_Bishop.setPosition(fou.posx*CELL_SIZE, fou.posy*CELL_SIZE);
+        window->draw(sprite_Bishop);
+    }else if(j == 2){
+        sprite_BBishop.setPosition(fou.posx*CELL_SIZE, fou.posy*CELL_SIZE);
+        window->draw(sprite_BBishop);
+    }else{
+        std::cout << "Erreur : j dans drawFou(). Choix de joueur invalide" << std::endl;
+    }
+}
+
+void SFMLRenderer::drawTour(Tour &tour, int j){
+    if(j == 1){
+        sprite_Rook.setPosition(tour.posx*CELL_SIZE, tour.posy*CELL_SIZE);
+        window->draw(sprite_Rook);
+    }else if(j == 2){
+        sprite_BRook.setPosition(tour.posx*CELL_SIZE, tour.posy*CELL_SIZE);
+        window->draw(sprite_BRook);
+    }else{
+        std::cout << "Erreur : j dans drawTour(). Choix de joueur invalide" << std::endl;
+    }
+}
+
+void SFMLRenderer::drawReine(Reine &reine, int j){
+    if(j == 1){
+        sprite_Queen.setPosition(reine.posx*CELL_SIZE, reine.posy*CELL_SIZE);
+        window->draw(sprite_Queen);
+    }else if(j == 2){
+        sprite_BQueen.setPosition(reine.posx*CELL_SIZE, reine.posy*CELL_SIZE);
+        window->draw(sprite_BQueen);
+    }else{
+        std::cout << "Erreur : j dans drawReine(). Choix de joueur invalide" << std::endl;
+    }
 }
 
 //Gestion des events et des inputs

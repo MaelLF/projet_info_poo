@@ -57,3 +57,6 @@ int Tour::deplacement(int choix, int range, Playboard& pboard){
     return 0;
 }
 
+void Tour::display(SFMLRenderer &renderer, int j){
+    renderer.drawTour(*this, j);
+}

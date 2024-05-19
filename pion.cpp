@@ -28,3 +28,8 @@ void Pion::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
         *range= 0;
     }
 }
+
+void Pion::display(SFMLRenderer &renderer, int j){
+    renderer.drawPion(*this, j);
+}
+
