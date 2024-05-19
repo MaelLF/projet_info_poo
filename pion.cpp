@@ -36,7 +36,7 @@ void Pion::display(SFMLRenderer &renderer, int j){
     renderer.drawPion(*this, j);
 }
 
-int Pion::pouvoir(Piece& piece_adverse, Playboard& pboard) {
+int Pion::pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) {
     // Lancer d'un dé pour déterminer le pouvoir utilisé
     int dice_roll = std::rand() % 6 + 1;
     int choice;

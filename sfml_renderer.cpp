@@ -284,48 +284,95 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
             setText(renderer.getText(), "click droit");
         }
         if(event.mouseButton.button == sf::Mouse::Left){
-            if(jeu.tourJ1){
-                setText(renderer.getText(), "Tour du Joueur 1");
-            }else if(jeu.tourJ2){
-                setText(renderer.getText(), "Tour du Joueur 2");
-            }
+            renderer.drawGameStatut(jeu);
 
             //On récupère la position de la souris
             sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 
-            //Clique sur le plateau
-            handleMouseClick(mousePosition, renderer, jeu);
+            if(!jeu.joueur1.choosePiece && !jeu.joueur2.choosePiece){
+                //Clique sur le plateau
+                handleMouseClick(mousePosition, renderer, jeu);
 
-            //Clique sur le bouton
-            //WKing
-            if(renderer.sprite_Button.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                setText(renderer.getText(), "Button");
+                //Clique sur le bouton
+                if(renderer.sprite_Button.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
+                    setText(renderer.getText(), "Button");
+                }
             }
 
             //Clique sur les Wooden Pieces
             //WPawn
             if(renderer.sprite_WPawn.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                setText(renderer.getText(), "Pawn");
+                if(jeu.joueur1.choosePiece){
+                    setText(renderer.getText(), "Choix : Pawn");
+                    jeu.joueur1.changerpiece(1);
+                    jeu.joueur1.choosePiece = false;
+                }else if(jeu.joueur2.choosePiece){
+                    setText(renderer.getText(), "Choix : Pawn");
+                    jeu.joueur2.changerpiece(1);
+                    jeu.joueur2.choosePiece = false;
+                }else{
+                    setText(renderer.getText(), "Pawn");
+                }
             }
 
             //WKnight
             if(renderer.sprite_WKnight.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                setText(renderer.getText(), "Knight");
+                if(jeu.joueur1.choosePiece){
+                    setText(renderer.getText(), "Choix : Knight");
+                    jeu.joueur1.changerpiece(2);
+                    jeu.joueur1.choosePiece = false;
+                }else if(jeu.joueur2.choosePiece){
+                    setText(renderer.getText(), "Choix : Knight");
+                    jeu.joueur2.changerpiece(2);
+                    jeu.joueur2.choosePiece = false;
+                }else{
+                    setText(renderer.getText(), "Knight");
+                }
             }
 
             //WBishop
             if(renderer.sprite_WBishop.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                setText(renderer.getText(), "Bishop");
+                if(jeu.joueur1.choosePiece){
+                    setText(renderer.getText(), "Choix : Bishop");
+                    jeu.joueur1.changerpiece(3);
+                    jeu.joueur1.choosePiece = false;
+                }else if(jeu.joueur2.choosePiece){
+                    setText(renderer.getText(), "Choix : Bishop");
+                    jeu.joueur2.changerpiece(3);
+                    jeu.joueur2.choosePiece = false;
+                }else{
+                    setText(renderer.getText(), "Bishop");
+                }
             }
 
             //WRook
             if(renderer.sprite_WRook.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                setText(renderer.getText(), "Rook");
+                if(jeu.joueur1.choosePiece){
+                    setText(renderer.getText(), "Choix : Rook");
+                    jeu.joueur1.changerpiece(4);
+                    jeu.joueur1.choosePiece = false;
+                }else if(jeu.joueur2.choosePiece){
+                    setText(renderer.getText(), "Choix : Rook");
+                    jeu.joueur2.changerpiece(4);
+                    jeu.joueur2.choosePiece = false;
+                }else{
+                    setText(renderer.getText(), "Rook");
+                }
             }
 
             //WQueen
             if(renderer.sprite_WQueen.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                setText(renderer.getText(), "Queen");
+                if(jeu.joueur1.choosePiece){
+                    setText(renderer.getText(), "Choix : Queen");
+                    jeu.joueur1.changerpiece(5);
+                    jeu.joueur1.choosePiece = false;
+                }else if(jeu.joueur2.choosePiece){
+                    setText(renderer.getText(), "Choix : Queen");
+                    jeu.joueur2.changerpiece(5);
+                    jeu.joueur2.choosePiece = false;
+                }else{
+                    setText(renderer.getText(), "Queen");
+                }
             }
 
             //WKing
@@ -346,12 +393,10 @@ void handleMouseClick(sf::Vector2i mousePosition, SFMLRenderer &renderer, Jeu& j
     if (jeu.playboard.isValidCell(posCell.x, posCell.y)) {
         // Effectuer une action sur la case (row, col)
         std::cout << "Click sur la case (" << posCell.x << ", " << posCell.y << ")" << std::endl;
+        //On lance le tour de jeu
         jeu.tour(posCell);
-        if(jeu.tourJ1){
-            setText(renderer.getText(), "Tour du Joueur 1");
-        }else if(jeu.tourJ2){
-            setText(renderer.getText(), "Tour du Joueur 2");
-        }
+        //On affiche le statut du tour
+        renderer.drawGameStatut(jeu);
     }
 }
 
@@ -360,4 +405,19 @@ void setText(sf::Text &txt, const sf::String &string){
     txt.setCharacterSize(26);
     txt.setFillColor(sf::Color::Black);
     txt.setPosition(550,100);
+}
+
+void SFMLRenderer::drawGameStatut(Jeu& jeu){
+    if(jeu.tourJ1){
+        setText(txt, "Tour du Joueur 1");
+    }
+    else if(jeu.tourJ2){
+        setText(txt, "Tour du Joueur 2");
+    }
+    if(jeu.joueur1.choosePiece){
+        setText(txt, "Joueur 1 doit choisir une piece");
+    }
+    else if(jeu.joueur2.choosePiece){
+        setText(txt, "Joueur 2 doit choisir une piece");
+    }
 }
