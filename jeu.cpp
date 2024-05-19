@@ -18,13 +18,6 @@ void Jeu::tour(sf::Vector2i posCell){
     joueur->my_piece->convertXYtoChoiceRange(posCell.x,posCell.y, &choice, &range);
     printf("choix%d range%d \n",choice,range);
     dep = joueur->my_piece->deplacement(choice,range,playboard);
-    if(tourJ1 && dep){
-        tourJ1 = false;
-        tourJ2 = true;
-    }else if(tourJ2 && dep){
-        tourJ1 = true;
-        tourJ2 = false;
-    }
     
     printf("Fin de déplacement \n");
     if(playboard.getStatus(joueur->my_piece->posx,joueur->my_piece->posy)==2){
@@ -32,6 +25,15 @@ void Jeu::tour(sf::Vector2i posCell){
         DuelCell cel;
         int res = cel.duel();
         recompense(res);
+    }
+    
+    //Fin du tour
+    if(tourJ1 && dep){
+        tourJ1 = false;
+        tourJ2 = true;
+    }else if(tourJ2 && dep){
+        tourJ1 = true;
+        tourJ2 = false;
     }
 }
 
@@ -44,8 +46,6 @@ void Jeu::recompense(int res){
         joueur = &joueur2;
     }
         joueur->point ++;
-        int i;
-        std::cout << "Saisir pièce : ";
-        std::cin >> i;
-        joueur->changerpiece(i);
+        std::cout << "Saisir pièce : " << std::endl;
+        joueur->choosePiece = true;
 }

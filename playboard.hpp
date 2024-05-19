@@ -6,7 +6,7 @@
 #include "cell.hpp"
 
 #define NB_OBSTACLES 10
-#define NB_DUEL 3
+#define NB_DUEL 20
 
 class Joueur;   
 // Déclaration anticipée de la classe SFMLRenderer

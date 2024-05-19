@@ -32,6 +32,7 @@ public:
     void drawCavalier(Cavalier &cavalier, int j);
     void drawTour(Tour &tour, int j);
     void drawReine(Reine &reine, int j);
+    void drawGameStatut(Jeu& jeu);
      
     sf::Sprite sprite_Screen, sprite_Back, sprite_Back2L, sprite_Back2R, sprite_Button, sprite_Rock, sprite_VS, sprite_WPawn, sprite_WKnight, sprite_WBishop, sprite_WRook, sprite_WQueen, sprite_WKing, sprite_Pawn, sprite_Knight, sprite_Bishop, sprite_Rook, sprite_Queen, sprite_BPawn, sprite_BKnight, sprite_BBishop, sprite_BRook, sprite_BQueen;
 

@@ -12,12 +12,13 @@
 
 class Joueur {
 public:
-    Joueur(){ name ="default"; point = 0;}
-    Joueur(const std::string& nom, std::shared_ptr<Piece> piece) : name(nom), my_piece(piece) {}
+    Joueur(){ name ="default"; point = 0; choosePiece =  false;}
+    Joueur(const std::string& nom, std::shared_ptr<Piece> piece) : name(nom), my_piece(piece), choosePiece(false) {}
 
     std::string name;
     std::shared_ptr<Piece> my_piece;
     int point;
+    bool choosePiece;
     void print() const {
         if (my_piece) {
             std::cout << "Joueur : " << name << " Piece : " << my_piece->getname() 
@@ -39,15 +40,15 @@ public:
                 new_piece = std::make_shared<Cavalier>(my_piece->posx, my_piece->posy);
                 printf("piece changé pour un Cavalier \n");
                 break;
-
+            
             case 3:
-                new_piece = std::make_shared<Tour>(my_piece->posx, my_piece->posy);
-                printf("piece changé pour une Tour \n");
+                new_piece = std::make_shared<Fou>(my_piece->posx, my_piece->posy);
+                printf("piece changé pour un Fou \n");
                 break;
 
             case 4:
-                new_piece = std::make_shared<Fou>(my_piece->posx, my_piece->posy);
-                printf("piece changé pour un Fou \n");
+                new_piece = std::make_shared<Tour>(my_piece->posx, my_piece->posy);
+                printf("piece changé pour une Tour \n");
                 break;
 
             case 5:
