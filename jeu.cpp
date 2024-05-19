@@ -20,7 +20,7 @@ void Jeu::tour(sf::Vector2i posCell){
     dep = joueur->my_piece->deplacement(choice,range,playboard);
     
     printf("Fin de déplacement \n");
-    if(playboard.getStatus(joueur->my_piece->posx,joueur->my_piece->posy)==2){
+    if(dep && playboard.getStatus(joueur->my_piece->posx,joueur->my_piece->posy)==2){
         printf("Duel \n");
         DuelCell cel;
         int res = cel.duel();
