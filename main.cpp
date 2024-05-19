@@ -141,20 +141,6 @@ int main() {
     }
     */
 
-
-    // Test des pouvoirs du pion sur les joueurs 1 et 2
-    int resultat_pouvoir_joueur1 = jeu.joueur1.my_piece->pouvoir(jeu.joueur1, jeu.joueur2);
-    int resultat_pouvoir_joueur2 = jeu.joueur2.my_piece->pouvoir(jeu.joueur2, jeu.joueur1);
-
-    // Affichage des résultats
-    std::cout << "Résultat du pouvoir pour le joueur 1 : " << resultat_pouvoir_joueur1 << std::endl;
-    std::cout << "Résultat du pouvoir pour le joueur 2 : " << resultat_pouvoir_joueur2 << std::endl;
-
-    // Affichage des joueurs après l'utilisation des pouvoirs
-    std::cout << "Joueur 1 après l'utilisation du pouvoir : ";
-    jeu.joueur1.print();
-    std::cout << "Joueur 2 après l'utilisation du pouvoir : ";
-    jeu.joueur2.print();
     
     return 0;
 }

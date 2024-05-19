@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include "playboard.hpp"
+#include "joueur.hpp"
 #ifndef piece_H
 #define piece_H
 
@@ -21,6 +22,7 @@ class Piece{
         virtual void convertXYtoChoiceRange(int i, int j,int* choice,int* range);
         virtual ~Piece() = default;
         virtual void display(SFMLRenderer &renderer, int j) = 0;
+        virtual int pouvoir(int choix,Piece& piece_adverse, Playboard& pboard) { return 0; }
 };
 
 #include "sfml_renderer.hpp"
