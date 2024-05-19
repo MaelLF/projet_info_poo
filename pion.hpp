@@ -10,6 +10,6 @@ class Pion : public Piece{
         int deplacement(int choix, int range ,Playboard& pboard)override;
         void convertXYtoChoiceRange(int i, int j,int* choice,int* range)override;
         void display(SFMLRenderer &renderer, int j) override;
-        int pouvoir(Joueur& joueur, Joueur& joueur_adverse);
+        int pouvoir(Joueur& joueur, Joueur& joueur_adverse,Playboard& pboard);
 };
 #endif
