@@ -110,7 +110,7 @@ int main() {
         sf::Event event;    //Variable pour gérer l'évènement
         while (window.pollEvent(event))
         {
-            inputHandler(event, renderer, jeu.playboard);
+            inputHandler(event, renderer, jeu);
         }
 
         //Couleur de la fenêtre

@@ -17,17 +17,20 @@ public:
         joueur2 = Joueur("J2", piPtr2);
         longueur = lon;
         largeur = lar;
+        tourJ1 = true;
+        tourJ2 = false;
         Playboard pboard(longueur,largeur);
         playboard = pboard;
         playboard.initPlayboard();
     }
-    void tour(int nb_joueur);
+    void tour(sf::Vector2i posCell);
     void recompense(int res);
     Joueur joueur1;  // First player
     Joueur joueur2;  // Second player
     Playboard playboard;
     int longueur;    // Length
     int largeur;     // Width
+    bool tourJ1, tourJ2;
 };
 
 #endif // JEU_H

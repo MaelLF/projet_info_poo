@@ -12,12 +12,17 @@ SFMLRenderer::SFMLRenderer()
 
     //Création d'un texte
     txt.setFont(font);
-    setText(txt, "Hello");
+    setText(txt, "Debut du jeu");
     
     // Créer une texture à partir de l'image
     texture_Screen.loadFromFile("Pictures/Screen.jpeg");
     texture_Back.loadFromFile("Pictures/Back.jpeg");
     texture_Back2.loadFromFile("Pictures/Back2.jpg");
+    //Button
+    texture_Button.loadFromFile("Pictures/Button2.png");
+    //Cell
+    texture_Rock.loadFromFile("Pictures/Rock.png");
+    texture_VS.loadFromFile("Pictures/VS.png");
     //Wooden pieces textures
     texture_WPawn.loadFromFile("Pictures/WoodenPieces/Pawn.png");
     texture_WKnight.loadFromFile("Pictures/WoodenPieces/Knight.png");
@@ -43,6 +48,11 @@ SFMLRenderer::SFMLRenderer()
     sprite_Back.setTexture(texture_Back);
     sprite_Back2L.setTexture(texture_Back2);
     sprite_Back2R.setTexture(texture_Back2);
+    //Button
+    sprite_Button.setTexture(texture_Button);
+    //Cell
+    sprite_Rock.setTexture(texture_Rock);
+    sprite_VS.setTexture(texture_VS);
     //Wooden pieces sprites
     sprite_WPawn.setTexture(texture_WPawn);
     sprite_WKnight.setTexture(texture_WKnight);
@@ -76,6 +86,16 @@ SFMLRenderer::SFMLRenderer()
     sprite_Back2L.setPosition(400,0);
     sprite_Back2R.setScale(0.51,0.82);
     sprite_Back2R.setPosition(900,0);
+
+    //Button
+    sprite_Button.setScale(1.02,1.19);
+    sprite_Button.setPosition(600,600);
+
+    //Rock
+    sprite_Rock.setScale(0.52,0.54);
+
+    //VS
+    sprite_VS.setScale(0.033,0.033);
 
     //Wooden Pieces
     sprite_WPawn.setScale(3.1,3.1);
@@ -144,6 +164,7 @@ void SFMLRenderer::drawPlayboard(Playboard &playboard){
     window->draw(sprite_Back);
     window->draw(sprite_Back2L);
     window->draw(sprite_Back2R);
+    window->draw(sprite_Button);
     window->draw(sprite_WPawn);
     window->draw(sprite_WKnight);
     window->draw(sprite_WBishop);
@@ -158,16 +179,20 @@ void SFMLRenderer::drawPlayboard(Playboard &playboard){
             sf::RectangleShape shape(sf::Vector2f(CELL_SIZE,CELL_SIZE));
             if((i+j)%2 == 0){
                 shape.setFillColor(sf::Color::White);
+                shape.setPosition(i*CELL_SIZE,j*CELL_SIZE);
+                window->draw(shape);
             }else if((i+j)%2 ==1 ){
                 shape.setFillColor(sf::Color::Black);
+                shape.setPosition(i*CELL_SIZE,j*CELL_SIZE);
+                window->draw(shape);
             }
             if(playboard.getCell(i,j).getStatus() == 2){
-                shape.setFillColor(sf::Color::Blue);
+                sprite_VS.setPosition(i*CELL_SIZE,j*CELL_SIZE);
+                window->draw(sprite_VS);
             }else if(playboard.getCell(i,j).getStatus() == 0){
-                shape.setFillColor(sf::Color::Red);
+                sprite_Rock.setPosition(i*CELL_SIZE,j*CELL_SIZE);
+                window->draw(sprite_Rock);
             }
-            shape.setPosition(i*CELL_SIZE,j*CELL_SIZE);
-            window->draw(shape);
         }
     }
 
@@ -235,7 +260,7 @@ void SFMLRenderer::drawReine(Reine &reine, int j){
 }
 
 //Gestion des events et des inputs
-void inputHandler(sf::Event event, SFMLRenderer &renderer, Playboard &playboard){
+void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
     sf::RenderWindow &window = renderer.getWindow();
 
     // Fermer le fenêtre
@@ -259,11 +284,23 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Playboard &playboard)
             setText(renderer.getText(), "click droit");
         }
         if(event.mouseButton.button == sf::Mouse::Left){
-            setText(renderer.getText(), "click gauche");
+            if(jeu.tourJ1){
+                setText(renderer.getText(), "Tour du Joueur 1");
+            }else if(jeu.tourJ2){
+                setText(renderer.getText(), "Tour du Joueur 2");
+            }
+
+            //On récupère la position de la souris
             sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 
             //Clique sur le plateau
-            handleMouseClick(mousePosition, renderer, playboard);
+            handleMouseClick(mousePosition, renderer, jeu);
+
+            //Clique sur le bouton
+            //WKing
+            if(renderer.sprite_Button.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
+                setText(renderer.getText(), "Button");
+            }
 
             //Clique sur les Wooden Pieces
             //WPawn
@@ -299,24 +336,28 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Playboard &playboard)
     }
 }
 
-void handleMouseClick(sf::Vector2i mousePosition, SFMLRenderer &renderer, Playboard &playboard) {
+void handleMouseClick(sf::Vector2i mousePosition, SFMLRenderer &renderer, Jeu& jeu) {
     // Convertir les coordonnées de la souris en coordonnées de la grille
-    int col = mousePosition.x / CELL_SIZE;
-    int row = mousePosition.y / CELL_SIZE;
-
-    ObstacleCell obs = ObstacleCell();
+    sf::Vector2i posCell;
+    posCell.x = mousePosition.x / CELL_SIZE;
+    posCell.y = mousePosition.y / CELL_SIZE;
 
     // Vérifier que les coordonnées sont valides
-    if (playboard.isValidCell(col,row)) {
+    if (jeu.playboard.isValidCell(posCell.x, posCell.y)) {
         // Effectuer une action sur la case (row, col)
-        std::cout << "Click sur la case (" << col << ", " << row << ")" << std::endl;
-        playboard.setCell(col, row, obs);
+        std::cout << "Click sur la case (" << posCell.x << ", " << posCell.y << ")" << std::endl;
+        jeu.tour(posCell);
+        if(jeu.tourJ1){
+            setText(renderer.getText(), "Tour du Joueur 1");
+        }else if(jeu.tourJ2){
+            setText(renderer.getText(), "Tour du Joueur 2");
+        }
     }
 }
 
 void setText(sf::Text &txt, const sf::String &string){
     txt.setString(string);
     txt.setCharacterSize(26);
-    txt.setFillColor(sf::Color::Red);
+    txt.setFillColor(sf::Color::Black);
     txt.setPosition(550,100);
 }
