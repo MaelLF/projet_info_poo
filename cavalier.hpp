@@ -10,11 +10,11 @@ public:
     Cavalier(int x, int y) { name = "Cavalier"; posx = x; posy = y; }   
 
     // Méthode pour déplacer le Cavalier
-    int deplacement(int choix, Playboard& board);
-    int deplacement(int choix, int range, Playboard& pboard);
+    int deplacement(int choix, Playboard& board)override;
+    int deplacement(int choix, int range, Playboard& pboard)override;
 
     int pouvoir (int choix, Playboard& board);
-
+    void convertXYtoChoiceRange(int i, int j,int* choice,int* range)override;
     void display(SFMLRenderer &renderer, int j) override;
 
 };
