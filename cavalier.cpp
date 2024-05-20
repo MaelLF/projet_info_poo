@@ -152,35 +152,35 @@ void Cavalier::display(SFMLRenderer &renderer, int j){
 
 void Cavalier::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
     *range =0;
-    if (this->posx-1==i && this->posy-2==j){
+    if (this->posx-2==i && this->posy-1==j){
         *choice=0;
         return;
     }
-    if (this->posx+1==i && this->posy-2==j){
+    if (this->posx-2==i && this->posy+1==j){
         *choice=1;
         return;
     }
-    if (this->posx-1==i && this->posy+2==j){
+    if (this->posx+2==i && this->posy-1==j){
         *choice=5;
         return;
     }
-    if (this->posx+1==i && this->posy+2==j){
+    if (this->posx+2==i && this->posy+1==j){
         *choice=4;
         return;
     }
-    if (this->posx-2==i && this->posy-1==j){
+    if (this->posx-1==i && this->posy-2==j){
         *choice=7;
         return;
     }
-    if (this->posx-2==i && this->posy+1==j){
+    if (this->posx+1==i && this->posy-2==j){
         *choice=6;
         return;
     }
-    if (this->posx+2==i && this->posy-1==j){
+    if (this->posx-1==i && this->posy+2==j){
         *choice=2;
         return;
     }
-    if (this->posx+2==i && this->posy+1==j){
+    if (this->posx+1==i && this->posy+2==j){
         *choice=3;
         return;
     }
