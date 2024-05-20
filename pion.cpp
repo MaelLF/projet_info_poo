@@ -1,7 +1,5 @@
 #include "pion.hpp"
 #include "duelcell.hpp"
-#include <cstdlib> // Pour std::rand
-#include <ctime>   // Pour std::time
 
 int Pion::deplacement(int choix ,Playboard& pboard){
     if (choix==1){
@@ -36,14 +34,14 @@ void Pion::display(SFMLRenderer &renderer, int j){
     renderer.drawPion(*this, j);
 }
 
-int Pion::pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) {
+int Pion::pouvoir(int dice_roll,int i, int j, Piece& piece_adverse, Playboard& pboard) {
     // Lancer d'un dé pour déterminer le pouvoir utilisé
-    int dice_roll = std::rand() % 6 + 1;
     int choice;
     int range;
     //FONCTION MATTHIEU RÉCUP I et J
     // Pouvoir 1 : Avancer d'une case et faire reculer le joueur adverse d'une case 
     if (dice_roll == 1 || dice_roll == 3 || dice_roll == 5) {
+        printf("Vous etes tombé sur %d, vous avancez 1 fois\n",dice_roll);
         this->convertXYtoChoiceRange (i,j,&choice,&range);
         if (this->deplacement(choice, pboard)) {
             piece_adverse.Reculer(1, pboard); // Faire reculer le joueur adverse d'une case
@@ -52,6 +50,8 @@ int Pion::pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) {
     }
     // Pouvoir 2 : Avancer d'une case et faire reculer le joueur adverse de 3 cases (tomber sur un nombre pair)
     else if (dice_roll == 2 || dice_roll == 4) {
+        printf("Vous etes tombé sur %d, vous avancez 1 fois et faites reculer l'adversaire de 3 cases\n",dice_roll);
+        this->convertXYtoChoiceRange (i,j,&choice,&range);
         if (this->deplacement(choice, pboard)) {
             piece_adverse.Reculer(3, pboard); // Faire reculer le joueur adverse de 3 cases
             return 2; // Succès du pouvoir 2
@@ -59,6 +59,8 @@ int Pion::pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) {
     }
     // Pouvoir 3 : Avancer d'une case et faire reculer le joueur adverse de 5 cases (tomber sur 6)
     else if (dice_roll == 6) {
+        printf("Vous etes tombé sur %d, vous avancez 1 fois et faites reculer l'adversaire de 5 cases\n",dice_roll);
+        this->convertXYtoChoiceRange (i,j,&choice,&range);
         if (this->deplacement(choice, pboard)) {
             piece_adverse.Reculer(5, pboard); // Reculer de 5 cases
             return 3; // Succès du pouvoir 3

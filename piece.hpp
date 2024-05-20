@@ -22,7 +22,7 @@ class Piece{
         virtual void convertXYtoChoiceRange(int i, int j,int* choice,int* range,int rangemax);
         virtual ~Piece() = default;
         virtual void display(SFMLRenderer &renderer, int j) = 0;
-        virtual int pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) { return 0; }
+        virtual int pouvoir(int dice_roll,int i, int j, Piece& piece_adverse, Playboard& pboard) { return 0; }
         virtual void Reculer(int range, Playboard& pboard);
 };
 

@@ -1,6 +1,7 @@
-
 #include "jeu.hpp"
 #include "duelcell.hpp"
+#include <cstdlib> // Pour std::rand
+#include <ctime>   // Pour std::time
 void Jeu::tour(sf::Vector2i posCell){
     Joueur *joueur;
     if (tourJ1){
@@ -15,9 +16,11 @@ void Jeu::tour(sf::Vector2i posCell){
     
     joueur->my_piece->print();
     std::cout << "Click sur la case (" << posCell.x << ", " << posCell.y << ")" << std::endl;
-    joueur->my_piece->convertXYtoChoiceRange(posCell.x,posCell.y, &choice, &range);
-    printf("choix%d range%d \n",choice,range);
-    dep = joueur->my_piece->deplacement(choice,range,playboard);
+    int dice_roll = std::rand() % 6 + 1;
+    joueur->my_piece->pouvoir(dice_roll,posCell.x,posCell.y,&joueur2,playboard);
+    //joueur->my_piece->convertXYtoChoiceRange(posCell.x,posCell.y, &choice, &range);
+    //printf("choix%d range%d \n",choice,range);
+    //dep = joueur->my_piece->deplacement(choice,range,playboard);
     
     printf("Fin de déplacement \n");
     if(dep && playboard.getStatus(joueur->my_piece->posx,joueur->my_piece->posy)==2){
