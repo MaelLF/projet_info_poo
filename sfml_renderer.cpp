@@ -12,7 +12,7 @@ SFMLRenderer::SFMLRenderer()
 
     //Création d'un texte
     txt.setFont(font);
-    setText(txt, "Debut du jeu");
+    setText(txt, L"Règles du jeu\nTour à tour, lancer le dé,\npuis sélectionner la case où\navancer. Un duel a lieu tous les\n3 tours ou en allant sur une\ncase VS. Changer alors de\npièce pour atteindre la case\ndu roi en 1er. Chaque pièce\npossède un pouvoir spécifique\nen fonction de la valeur du dé.\nCliquer sur les pièces à\ndroite pour les connaître.");
     txtButton.setFont(font);
     txtButton.setString(L"Lancer le dé");
     txtButton.setCharacterSize(25);
@@ -282,15 +282,6 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
         std::cout << "Game closed" << std::endl;
     }
 
-    //Gestion des input clavier
-        //Touche Echap
-        /*
-        if(event.key.code == sf::Keyboard::Escape){
-            window.close();
-            std::cout << "Fermeture par Echape" << std::endl;
-        }
-        */
-
     //Gestion des inputs souris
     if (event.type == sf::Event::MouseButtonPressed){
         if(event.mouseButton.button == sf::Mouse::Right){
@@ -329,7 +320,7 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
                     jeu.joueur2.changerpiece(1);
                     jeu.joueur2.choosePiece = false;
                 }else{
-                    setText(renderer.getText(), "Pawn");
+                    setText(renderer.getText(), L"Pawn\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez de 1 case,\nl'adversaire recule de 1 case\n- 2 ou 4 : Avancez de 1 case,\nl'adversaire recule de 3 cases\n- 6 : Avancez de 1 case,\nl'adversaire recule de 5 cases");
                 }
             }
 
@@ -344,7 +335,7 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
                     jeu.joueur2.changerpiece(2);
                     jeu.joueur2.choosePiece = false;
                 }else{
-                    setText(renderer.getText(), "Knight");
+                    setText(renderer.getText(), L"Knight\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez en L\n- 2 ou 4 : Avancez en L,\nl'adversaire recule de 1 case\n- 6 : Avancez en L,\nl'adversaire recule de 3 cases");
                 }
             }
 
@@ -359,7 +350,7 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
                     jeu.joueur2.changerpiece(3);
                     jeu.joueur2.choosePiece = false;
                 }else{
-                    setText(renderer.getText(), "Bishop");
+                    setText(renderer.getText(), L"Bishop\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 3\ncases\n- 2 ou 4 : Avancez jusqu'à 3\ncases, l'adversaire recule de\n1 case\n- 6 : Avancez jusqu'à 3 cases,\nl'adversaire recule de 3 cases\n");
                 }
             }
 
@@ -374,7 +365,7 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
                     jeu.joueur2.changerpiece(4);
                     jeu.joueur2.choosePiece = false;
                 }else{
-                    setText(renderer.getText(), "Rook");
+                    setText(renderer.getText(), L"Rook\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 3\ncases\n- 2 ou 4 : Avancez jusqu'à 4\ncases\n- 6 : Avancez jusqu'à 5 cases");
                 }
             }
 
@@ -389,13 +380,13 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
                     jeu.joueur2.changerpiece(5);
                     jeu.joueur2.choosePiece = false;
                 }else{
-                    setText(renderer.getText(), "Queen");
+                    setText(renderer.getText(), L"Queen\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 4\ncases, l'adversaire recule de\n1 case\n- 2 ou 4 : Avancez jusqu'à 4\ncases, l'adversaire recule de\n3 cases\n- 6 : Avancez jusqu'à 4 cases,\nl'adversaire recule de 4 cases\n");
                 }
             }
 
             //WKing
             if(renderer.sprite_WKing.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                setText(renderer.getText(), "King");
+                setText(renderer.getText(), L"Règles du jeu\nTour à tour, lancer le dé,\npuis sélectionner la case où\navancer. Un duel a lieu tous les\n3 tours ou en allant sur une\ncase VS. Changer alors de\npièce pour atteindre la case\ndu roi en 1er. Chaque pièce\npossède un pouvoir spécifique\nen fonction de la valeur du dé.\nCliquer sur les pièces à\ndroite pour les connaître.");
             }
         }
     }
@@ -425,7 +416,7 @@ void setText(sf::Text &txt, const sf::String &string){
     txt.setString(string);
     txt.setCharacterSize(20);
     txt.setFillColor(sf::Color::Black);
-    txt.setPosition(560,100);
+    txt.setPosition(560,80);
 }
 
 void SFMLRenderer::drawGameStatut(Jeu& jeu){
