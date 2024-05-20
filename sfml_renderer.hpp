@@ -25,7 +25,8 @@ public:
     
     sf::RenderWindow& getWindow() {return *window;};
     sf::Text& getText(){return txt;};
-
+    
+    void drawInterface();
     void drawPlayboard(Playboard &playboard);
     void drawPion(Pion &pion, int j);
     void drawFou(Fou &fou, int j);

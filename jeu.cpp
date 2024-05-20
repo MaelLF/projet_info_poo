@@ -26,6 +26,11 @@ void Jeu::tour(sf::Vector2i posCell){
         int res = cel.duel();
         recompense(res);
     }
+
+    //Condition de fin du jeu
+    if(playboard.getStatus(joueur->my_piece->posx,joueur->my_piece->posy)==4){
+        endGame = true;
+    }
     
     //Fin du tour
     if(tourJ1 && dep){

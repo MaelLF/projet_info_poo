@@ -165,7 +165,7 @@ void SFMLRenderer::waitForExit()
     }  
 }
 
-void SFMLRenderer::drawPlayboard(Playboard &playboard){
+void SFMLRenderer::drawInterface(){
     //Sprite draw
     window->draw(sprite_Screen);
     window->draw(sprite_Back);
@@ -180,7 +180,9 @@ void SFMLRenderer::drawPlayboard(Playboard &playboard){
     window->draw(sprite_WKing);
     window->draw(txt);
     window->draw(txtButton);
+}
 
+void SFMLRenderer::drawPlayboard(Playboard &playboard){
     //Plateau    
     int i, j;
     for(i = 0; i < playboard.getRows(); i++){

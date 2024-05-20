@@ -20,6 +20,7 @@ public:
         tourJ1 = true;
         tourJ2 = false;
         clickButton = true;
+        endGame = false;
         nbTours = 0;
         Playboard pboard(longueur,largeur);
         playboard = pboard;
@@ -32,7 +33,7 @@ public:
     Playboard playboard;
     int longueur;    // Length
     int largeur;     // Width
-    bool tourJ1, tourJ2, clickButton;
+    bool tourJ1, tourJ2, clickButton, endGame;
     int nbTours;
 };
 
