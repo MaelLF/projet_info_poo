@@ -294,7 +294,7 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
     //Gestion des inputs souris
     if (event.type == sf::Event::MouseButtonPressed){
         if(event.mouseButton.button == sf::Mouse::Right){
-            setText(renderer.getText(), "click droit");
+            setText(renderer.getText(), L"Si vous cherchez des\ninformations cliquez sur les\npièces à droite.\nLe roi donne les règles du jeu.");
         }
         if(event.mouseButton.button == sf::Mouse::Left){
             renderer.drawGameStatut(jeu);
@@ -306,9 +306,14 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
                 //Clique sur le plateau
                 handleMouseClick(mousePosition, renderer, jeu);
 
-                //Clique sur le bouton
-                if(renderer.sprite_Button.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                    setText(renderer.getText(), "Pouvoir");
+                //On ne peut lancer le dé qu'une fois par tour
+                if(!jeu.clickButton){
+                    //Clique sur le bouton pour lancer le dé
+                    if(renderer.sprite_Button.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
+                        jeu.clickButton = true;
+                        jeu.dice = std::rand() % 6 + 1;
+                        renderer.drawGameStatut(jeu);
+                    }
                 }
             }
 
@@ -375,11 +380,11 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
 
             //WQueen
             if(renderer.sprite_WQueen.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                if(jeu.joueur1.choosePiece){
+                if(jeu.joueur1.choosePiece && jeu.joueur1.point >= 3){
                     setText(renderer.getText(), L"Le joueur 1 à choisi une Queen");
                     jeu.joueur1.changerpiece(5);
                     jeu.joueur1.choosePiece = false;
-                }else if(jeu.joueur2.choosePiece){
+                }else if(jeu.joueur2.choosePiece && jeu.joueur2.point >= 3){
                     setText(renderer.getText(), L"Le joueur 2 à choisi une Queen");
                     jeu.joueur2.changerpiece(5);
                     jeu.joueur2.choosePiece = false;
@@ -406,8 +411,11 @@ void handleMouseClick(sf::Vector2i mousePosition, SFMLRenderer &renderer, Jeu& j
     if (jeu.playboard.isValidCell(posCell.x, posCell.y)) {
         // Effectuer une action sur la case (row, col)
         std::cout << "Click sur la case (" << posCell.x << ", " << posCell.y << ")" << std::endl;
-        //On lance le tour de jeu
-        jeu.tour(posCell);
+        //On doit d'abord lancer le dé avant de jouer
+        if(jeu.clickButton){
+            //On lance le tour de jeu
+            jeu.tour(posCell);
+        }
         //On affiche le statut du tour
         renderer.drawGameStatut(jeu);
     }
@@ -421,15 +429,31 @@ void setText(sf::Text &txt, const sf::String &string){
 }
 
 void SFMLRenderer::drawGameStatut(Jeu& jeu){
-    if(jeu.tourJ1){
-        std::wstring wpoints = std::to_wstring(jeu.joueur1.point);
-        sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints;
-        setText(txt, message);
-    }
-    else if(jeu.tourJ2){
-        std::wstring wpoints = std::to_wstring(jeu.joueur2.point);
-        sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints;
-        setText(txt, message);
+    if(jeu.clickButton){
+        //Numéro du dé
+        std::wstring wdice = std::to_wstring(jeu.dice);
+
+        if(jeu.tourJ1){
+            std::wstring wpoints = std::to_wstring(jeu.joueur1.point);
+            sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints + L"\n\nLe dé est tombé sur " + wdice + L"\n\nVous pouvez choisir une case";
+            setText(txt, message);
+        }
+        else if(jeu.tourJ2){
+            std::wstring wpoints = std::to_wstring(jeu.joueur2.point);
+            sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints  + L"\n\nLe dé est tombé sur " + wdice + L"\n\nVous pouvez choisir une case";
+            setText(txt, message);
+        }
+    }else if(!jeu.clickButton){
+        if(jeu.tourJ1){
+            std::wstring wpoints = std::to_wstring(jeu.joueur1.point);
+            sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints + L"\n\nVeuillez lancer le dé";
+            setText(txt, message);
+        }
+        else if(jeu.tourJ2){
+            std::wstring wpoints = std::to_wstring(jeu.joueur2.point);
+            sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints + L"\n\nVeuillez lancer le dé";
+            setText(txt, message);
+        }
     }
     if(jeu.joueur1.choosePiece){
         setText(txt, L"Duel : Le Joueur 1  a gagné\nChoisissez une une piece");

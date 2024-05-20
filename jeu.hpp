@@ -19,9 +19,10 @@ public:
         largeur = lar;
         tourJ1 = true;
         tourJ2 = false;
-        clickButton = true;
+        clickButton = false;
         endGame = false;
         nbTours = 0;
+        dice = 0;
         Playboard pboard(longueur,largeur);
         playboard = pboard;
         playboard.initPlayboard();
@@ -35,6 +36,7 @@ public:
     int largeur;     // Width
     bool tourJ1, tourJ2, clickButton, endGame;
     int nbTours;
+    int dice;
 };
 
 #endif // JEU_H
