@@ -99,7 +99,6 @@ int main() {
     // jeu.joueur1.changerpiece(1);
     // jeu.tour(1);
     // jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
-    int nb_tour=0;
     jeu.playboard.printBoard(jeu.joueur1,jeu.joueur2);
     // jeu.joueur1.changerpiece(2);
     jeu.joueur1.print();

@@ -5,8 +5,8 @@
 #include <vector>
 #include "cell.hpp"
 
-#define NB_OBSTACLES 10
-#define NB_DUEL 20
+#define NB_OBSTACLES 20
+#define NB_DUEL 5
 
 class Joueur;   
 // Déclaration anticipée de la classe SFMLRenderer

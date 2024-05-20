@@ -13,6 +13,11 @@ SFMLRenderer::SFMLRenderer()
     //Création d'un texte
     txt.setFont(font);
     setText(txt, "Debut du jeu");
+    txtButton.setFont(font);
+    txtButton.setString("Button");
+    txtButton.setCharacterSize(25);
+    txtButton.setFillColor(sf::Color::Black);
+    txtButton.setPosition(650,625);
     
     // Créer une texture à partir de l'image
     texture_Screen.loadFromFile("Pictures/Screen.jpeg");
@@ -60,6 +65,7 @@ SFMLRenderer::SFMLRenderer()
     sprite_WRook.setTexture(texture_WRook);
     sprite_WQueen.setTexture(texture_WQueen);
     sprite_WKing.setTexture(texture_WKing);
+    sprite_WKingCell.setTexture(texture_WKing);
     //White pieces sprites
     sprite_Pawn.setTexture(texture_Pawn);
     sprite_Knight.setTexture(texture_Knight);
@@ -104,6 +110,7 @@ SFMLRenderer::SFMLRenderer()
     sprite_WRook.setScale(3.1,3.1);
     sprite_WQueen.setScale(3.1,3.1);
     sprite_WKing.setScale(3.1,3.1);
+    sprite_WKingCell.setScale(1.56,1.56);
 
     sprite_WPawn.setPosition(900,100);
     sprite_WKnight.setPosition(900,200);
@@ -171,6 +178,8 @@ void SFMLRenderer::drawPlayboard(Playboard &playboard){
     window->draw(sprite_WRook);
     window->draw(sprite_WQueen);
     window->draw(sprite_WKing);
+    window->draw(txt);
+    window->draw(txtButton);
 
     //Plateau    
     int i, j;
@@ -192,11 +201,13 @@ void SFMLRenderer::drawPlayboard(Playboard &playboard){
             }else if(playboard.getCell(i,j).getStatus() == 0){
                 sprite_Rock.setPosition(i*CELL_SIZE,j*CELL_SIZE);
                 window->draw(sprite_Rock);
+            }else if(playboard.getCell(i,j).getStatus() == 4){
+                sprite_WKingCell.setPosition(i*CELL_SIZE,j*CELL_SIZE);
+                window->draw(sprite_WKingCell);
             }
         }
     }
 
-    window->draw(txt);
 }
 
 void SFMLRenderer::drawPion(Pion& pion, int j){
@@ -303,11 +314,11 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
             //WPawn
             if(renderer.sprite_WPawn.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), "Choix : Pawn");
+                    setText(renderer.getText(), L"Le joueur 1 à choisi un Pawn");
                     jeu.joueur1.changerpiece(1);
                     jeu.joueur1.choosePiece = false;
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), "Choix : Pawn");
+                    setText(renderer.getText(), L"Le joueur 2 à choisi un Pawn");
                     jeu.joueur2.changerpiece(1);
                     jeu.joueur2.choosePiece = false;
                 }else{
@@ -318,11 +329,11 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
             //WKnight
             if(renderer.sprite_WKnight.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), "Choix : Knight");
+                    setText(renderer.getText(), L"Le joueur 1 à choisi un Knight");
                     jeu.joueur1.changerpiece(2);
                     jeu.joueur1.choosePiece = false;
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), "Choix : Knight");
+                    setText(renderer.getText(), L"Le joueur 2 à choisi un Knight");
                     jeu.joueur2.changerpiece(2);
                     jeu.joueur2.choosePiece = false;
                 }else{
@@ -333,11 +344,11 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
             //WBishop
             if(renderer.sprite_WBishop.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), "Choix : Bishop");
+                    setText(renderer.getText(), L"Le joueur 1 à choisi un Bishop");
                     jeu.joueur1.changerpiece(3);
                     jeu.joueur1.choosePiece = false;
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), "Choix : Bishop");
+                    setText(renderer.getText(), L"Le joueur 2 à choisi un Bishop");
                     jeu.joueur2.changerpiece(3);
                     jeu.joueur2.choosePiece = false;
                 }else{
@@ -348,11 +359,11 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
             //WRook
             if(renderer.sprite_WRook.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), "Choix : Rook");
+                    setText(renderer.getText(), L"Le joueur 1 à choisi une Rook");
                     jeu.joueur1.changerpiece(4);
                     jeu.joueur1.choosePiece = false;
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), "Choix : Rook");
+                    setText(renderer.getText(), L"Le joueur 2 à choisi une Rook");
                     jeu.joueur2.changerpiece(4);
                     jeu.joueur2.choosePiece = false;
                 }else{
@@ -363,11 +374,11 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
             //WQueen
             if(renderer.sprite_WQueen.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), "Choix : Queen");
+                    setText(renderer.getText(), L"Le joueur 1 à choisi une Queen");
                     jeu.joueur1.changerpiece(5);
                     jeu.joueur1.choosePiece = false;
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), "Choix : Queen");
+                    setText(renderer.getText(), L"Le joueur 2 à choisi une Queen");
                     jeu.joueur2.changerpiece(5);
                     jeu.joueur2.choosePiece = false;
                 }else{
@@ -402,22 +413,22 @@ void handleMouseClick(sf::Vector2i mousePosition, SFMLRenderer &renderer, Jeu& j
 
 void setText(sf::Text &txt, const sf::String &string){
     txt.setString(string);
-    txt.setCharacterSize(26);
+    txt.setCharacterSize(20);
     txt.setFillColor(sf::Color::Black);
-    txt.setPosition(550,100);
+    txt.setPosition(560,100);
 }
 
 void SFMLRenderer::drawGameStatut(Jeu& jeu){
     if(jeu.tourJ1){
-        setText(txt, "Tour du Joueur 1");
+        setText(txt, L"Tour du Joueur 1");
     }
     else if(jeu.tourJ2){
-        setText(txt, "Tour du Joueur 2");
+        setText(txt, L"Tour du Joueur 2");
     }
     if(jeu.joueur1.choosePiece){
-        setText(txt, "Joueur 1 doit choisir une piece");
+        setText(txt, L"Duel : Le Joueur 1  a gagné\nChoisissez une une piece");
     }
     else if(jeu.joueur2.choosePiece){
-        setText(txt, "Joueur 2 doit choisir une piece");
+        setText(txt, L"Duel : Le Joueur 2  a gagné\nChoisissez une une piece");
     }
 }
