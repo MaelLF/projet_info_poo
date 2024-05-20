@@ -14,10 +14,10 @@ SFMLRenderer::SFMLRenderer()
     txt.setFont(font);
     setText(txt, "Debut du jeu");
     txtButton.setFont(font);
-    txtButton.setString("Button");
+    txtButton.setString(L"Lancer le dé");
     txtButton.setCharacterSize(25);
     txtButton.setFillColor(sf::Color::Black);
-    txtButton.setPosition(650,625);
+    txtButton.setPosition(625,625);
     
     // Créer une texture à partir de l'image
     texture_Screen.loadFromFile("Pictures/Screen.jpeg");
@@ -308,7 +308,7 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
 
                 //Clique sur le bouton
                 if(renderer.sprite_Button.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                    setText(renderer.getText(), "Button");
+                    setText(renderer.getText(), "Pouvoir");
                 }
             }
 
@@ -422,10 +422,14 @@ void setText(sf::Text &txt, const sf::String &string){
 
 void SFMLRenderer::drawGameStatut(Jeu& jeu){
     if(jeu.tourJ1){
-        setText(txt, L"Tour du Joueur 1");
+        std::wstring wpoints = std::to_wstring(jeu.joueur1.point);
+        sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints;
+        setText(txt, message);
     }
     else if(jeu.tourJ2){
-        setText(txt, L"Tour du Joueur 2");
+        std::wstring wpoints = std::to_wstring(jeu.joueur2.point);
+        sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints;
+        setText(txt, message);
     }
     if(jeu.joueur1.choosePiece){
         setText(txt, L"Duel : Le Joueur 1  a gagné\nChoisissez une une piece");

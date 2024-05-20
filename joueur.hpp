@@ -13,7 +13,7 @@
 class Joueur {
 public:
     Joueur(){ name ="default"; point = 0; choosePiece =  false;}
-    Joueur(const std::string& nom, std::shared_ptr<Piece> piece) : name(nom), my_piece(piece), choosePiece(false) {}
+    Joueur(const std::string& nom, std::shared_ptr<Piece> piece) : name(nom), my_piece(piece), point(0), choosePiece(false) {}
 
     std::string name;
     std::shared_ptr<Piece> my_piece;
@@ -52,12 +52,14 @@ public:
                 break;
 
             case 5:
-                if (this->point>=3){
+                if ( this->point>=3){
                 new_piece = std::make_shared<Reine>(my_piece->posx, my_piece->posy);
                 this->point = this->point-3; 
                 break;
                 }
+                if (my_piece->name !="Reine"){
                 printf("Vous n'avez pas les points pour faire cette action \n");
+                }
                 break;
             
             default :
