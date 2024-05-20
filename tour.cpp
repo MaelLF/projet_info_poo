@@ -62,7 +62,7 @@ void Tour::display(SFMLRenderer &renderer, int j){
 }
 
 
-int Tour::pouvoir(Piece& piece_adverse, Playboard& pboard) {
+int Tour::pouvoir(int i, int j,Piece& piece_adverse, Playboard& pboard) {
     // Lancer d'un dé pour déterminer le pouvoir utilisé
     int dice_roll = std::rand() % 6 + 1;
     int choice;

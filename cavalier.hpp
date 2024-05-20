@@ -16,7 +16,7 @@ public:
     int pouvoir (int choix, Playboard& board);
     void convertXYtoChoiceRange(int i, int j,int* choice,int* range)override;
     void display(SFMLRenderer &renderer, int j) override;
-    int pouvoir(Piece& piece_adverse, Playboard& pboard)override;
+    int pouvoir(int i, int j,Piece& piece_adverse, Playboard& pboard)override;
 
 };
 

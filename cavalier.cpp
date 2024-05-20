@@ -188,7 +188,7 @@ void Cavalier::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
 }
 
 
-int Cavalier::pouvoir(Piece& piece_adverse, Playboard& pboard) {
+int Cavalier::pouvoir(int i, int j,Piece& piece_adverse, Playboard& pboard) {
     // Lancer d'un dé pour déterminer le pouvoir utilisé
     int dice_roll = std::rand() % 6 + 1;
     int choice;
