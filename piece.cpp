@@ -89,8 +89,12 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
 }
 
 void Piece::Reculer(int range, Playboard& pboard) {
-    int newY = posy + range;
-    if (newY < pboard.getCols() && newY >= 0) {
-        posy = newY;
+    int newY = posy;
+    int i =0;
+    while (i<range && pboard.getStatus(posx,posy+1)!=0 && newY < pboard.getCols()-1 && newY >= 0) {
+        posy = posy+1;
+        newY = posy + 1;
+        i++;
     }
+    return;
 }
