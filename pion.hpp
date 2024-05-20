@@ -8,8 +8,8 @@ class Pion : public Piece{
         void print()override{std::cout << name << std::endl;};
         int deplacement(int choix,Playboard& pboard)override;
         int deplacement(int choix, int range ,Playboard& pboard)override;
-        void convertXYtoChoiceRange(int i, int j,int* choice,int* range)override;
+        void convertXYtoChoiceRange(int i, int j,int* choice,int* range);
         void display(SFMLRenderer &renderer, int j) override;
-        int pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard)override;
+        int pouvoir(int dice_roll,int i, int j,Piece& piece_adverse, Playboard& pboard)override;
 };
 #endif
