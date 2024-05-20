@@ -66,3 +66,4 @@ int Pion::pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) {
     }
     return 0; // Aucun pouvoir n'a été activé
 }
+

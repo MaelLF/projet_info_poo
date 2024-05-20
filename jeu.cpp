@@ -31,9 +31,23 @@ void Jeu::tour(sf::Vector2i posCell){
     if(tourJ1 && dep){
         tourJ1 = false;
         tourJ2 = true;
+        nbTours++;
+        if(nbTours%3 == 0){
+            std::cout << "Duel" << std::endl;
+            DuelCell cel;
+            int res = cel.duel();
+            recompense(res);
+        }
     }else if(tourJ2 && dep){
         tourJ1 = true;
         tourJ2 = false;
+        nbTours++;
+        if(nbTours%3 == 0){
+            printf("Duel \n");
+            DuelCell cel;
+            int res = cel.duel();
+            recompense(res);
+        }
     }
 }
 

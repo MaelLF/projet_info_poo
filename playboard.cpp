@@ -2,6 +2,7 @@
 #include "emptycell.hpp"
 #include "duelcell.hpp"
 #include "obstaclecell.hpp"
+#include "kingcell.hpp"
 #include "playboard.hpp"
 #include "joueur.hpp"
 #include <iostream>
@@ -67,7 +68,7 @@ int Playboard::getStatus(int row, int col) const{
 
 void Playboard::initPlayboard(){
     srand(time(NULL));
-    int i, j, r, status, nbDuel = 0, nbObstacle = 0;
+    int i, j, r, status, nbDuel = 0, nbObstacle = 0, kingcell;
     //Placement des 3 cases Duels
     while(nbDuel < NB_DUEL){
         for(i=0; i < rows; i++){
@@ -80,7 +81,7 @@ void Playboard::initPlayboard(){
                     }else{
                         board[i][j] = DuelCell();
                         nbDuel++;
-                        std::cout << nbDuel << " : (i,j) = ("<< i << "," << j << ")" << std::endl;
+                        //std::cout << nbDuel << " : (i,j) = ("<< i << "," << j << ")" << std::endl;
                     }
                 }
             }
@@ -103,6 +104,9 @@ void Playboard::initPlayboard(){
             }
         }
     }
+    //Placement de la case du roi
+    kingcell = std::rand() % rows;
+    board[kingcell][0] = KingCell();
 }
 
 int Playboard::isoccupied(int row,int col,Joueur joueur)const{

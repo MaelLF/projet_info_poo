@@ -10,7 +10,7 @@ public:
     Jeu(int lon, int lar) {
         // Creating shared pointers for pieces
         std::shared_ptr<Piece> piPtr = std::make_shared<Pion>(lon/2, lar-1);
-        std::shared_ptr<Piece> piPtr2 = std::make_shared<Pion>((lon/2)+1, lar-1);
+        std::shared_ptr<Piece> piPtr2 = std::make_shared<Pion>((lon/2)-1, lar-1);
 
         // Creating players with their respective pieces
         joueur1 = Joueur("J1", piPtr);
@@ -19,6 +19,8 @@ public:
         largeur = lar;
         tourJ1 = true;
         tourJ2 = false;
+        clickButton = true;
+        nbTours = 0;
         Playboard pboard(longueur,largeur);
         playboard = pboard;
         playboard.initPlayboard();
@@ -30,7 +32,8 @@ public:
     Playboard playboard;
     int longueur;    // Length
     int largeur;     // Width
-    bool tourJ1, tourJ2;
+    bool tourJ1, tourJ2, clickButton;
+    int nbTours;
 };
 
 #endif // JEU_H
