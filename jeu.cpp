@@ -18,7 +18,7 @@ void Jeu::tour(sf::Vector2i posCell){
     joueur->my_piece->print();
     std::cout << "Click sur la case (" << posCell.x << ", " << posCell.y << ")" << std::endl;
     int dice_roll = std::rand() % 6 + 1;
-    joueur->my_piece->pouvoir(dice_roll,posCell.x,posCell.y,*(adverse->my_piece),playboard);
+    dep = joueur->my_piece->pouvoir(dice_roll,posCell.x,posCell.y,*(adverse->my_piece),playboard);
 
     //joueur->my_piece->convertXYtoChoiceRange(posCell.x,posCell.y, &choice, &range,3);
     //printf("choix%d range%d \n",choice,range);
