@@ -1,13 +1,15 @@
-
 #include "jeu.hpp"
 #include "duelcell.hpp"
 void Jeu::tour(sf::Vector2i posCell){
     Joueur *joueur;
+    Joueur *adverse;
     if (tourJ1){
         joueur = &joueur1;
+        adverse = &joueur2;
     }
     else if(tourJ2){
         joueur = &joueur2;
+        adverse = &joueur1;
     }
     int dep = 0;
     int choice;
@@ -25,6 +27,10 @@ void Jeu::tour(sf::Vector2i posCell){
         DuelCell cel;
         int res = cel.duel();
         recompense(res);
+    }
+    
+    if(dep && adverse->my_piece->posx == joueur->my_piece->posx && adverse->my_piece->posy == joueur->my_piece->posy){
+        adverse->my_piece->Reculer(1,playboard); // ne déclenche pas les cases duels
     }
 
     //Condition de fin du jeu

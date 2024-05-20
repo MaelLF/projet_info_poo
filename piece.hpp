@@ -23,7 +23,7 @@ class Piece{
         virtual ~Piece() = default;
         virtual void display(SFMLRenderer &renderer, int j) = 0;
         virtual int pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) { return 0; }
-        virtual void Reculer(int range, Playboard& pboard);
+        void Reculer(int range, Playboard& pboard);
 };
 
 #include "sfml_renderer.hpp"
