@@ -150,7 +150,7 @@ void Cavalier::display(SFMLRenderer &renderer, int j){
     renderer.drawCavalier(*this, j);
 }
 
-void Cavalier::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
+void Cavalier::convertXYtoChoiceRange(int i, int j,int* choice,int* range, int rangemax){
     *range =0;
     if (this->posx-2==i && this->posy-1==j){
         *choice=0;
@@ -188,28 +188,32 @@ void Cavalier::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
 }
 
 
-int Cavalier::pouvoir(int i, int j,Piece& piece_adverse, Playboard& pboard) {
+int Cavalier::pouvoir(int dice_roll,int i, int j,Piece& piece_adverse, Playboard& pboard) {
     // Lancer d'un dé pour déterminer le pouvoir utilisé
-    int dice_roll = std::rand() % 6 + 1;
     int choice;
     int range;
     //FONCTION MATTHIEU RÉCUP I et J
     // Pouvoir 1 : Avancer d'une case et faire reculer le joueur adverse d'une case 
     if (dice_roll == 1 || dice_roll == 3 || dice_roll == 5) {
-        this->convertXYtoChoiceRange (i,j,&choice,&range);
+        printf("Vous etes tombé sur %d, vous avancez 1 fois\n",dice_roll);
+        this->convertXYtoChoiceRange (i,j,&choice,&range,1);
         if (this->deplacement(choice, pboard)) {
             return 1;  // Succès du pouvoir 1
         }
     }
     // Pouvoir 2 : Avancer d'une case et faire reculer le joueur adverse de 3 cases (tomber sur un nombre pair)
     else if (dice_roll == 2 || dice_roll == 4) {
+        printf("Vous etes tombé sur %d, vous avancez 1 fois et faites reculer l'adversaire d'une case\n",dice_roll);
+        this->convertXYtoChoiceRange (i,j,&choice,&range,1);
         if (this->deplacement(choice, pboard)) {
-            piece_adverse.Reculer(1, pboard); // Faire reculer le joueur adverse de 3 cases
+            piece_adverse.Reculer(1, pboard); // Faire reculer le joueur adverse de 1 cases
             return 2; // Succès du pouvoir 2
         }
     }
     // Pouvoir 3 : Avancer d'une case et faire reculer le joueur adverse de 5 cases (tomber sur 6)
     else if (dice_roll == 6) {
+        printf("Vous etes tombé sur %d, vous avancez 1 fois et faites reculer l'adversaire de 3 cases\n",dice_roll);
+        this->convertXYtoChoiceRange (i,j,&choice,&range,1);
         if (this->deplacement(choice, pboard)) {
             piece_adverse.Reculer(3, pboard); // Reculer de 5 cases
             return 3; // Succès du pouvoir 3

@@ -19,11 +19,11 @@ class Piece{
         virtual int deplacement(int choix, int range,Playboard& board){printf("hello");return 0;};
         virtual int deplacement(int choix, Playboard& board){return 0;};
         virtual int deplacement(Playboard& pboard){return 0;};
-        virtual void convertXYtoChoiceRange(int i, int j,int* choice,int* range);
+        virtual void convertXYtoChoiceRange(int i, int j,int* choice,int* range,int rangemax);
         virtual ~Piece() = default;
         virtual void display(SFMLRenderer &renderer, int j) = 0;
-        virtual int pouvoir(int i, int j, Piece& piece_adverse, Playboard& pboard) { return 0; }
-        virtual void Reculer(int range, Playboard& pboard);
+        virtual int pouvoir(int dice_roll,int i, int j, Piece& piece_adverse, Playboard& pboard) { return 0; };
+        void Reculer(int range, Playboard& pboard);
 };
 
 #include "sfml_renderer.hpp"

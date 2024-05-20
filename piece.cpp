@@ -1,6 +1,6 @@
 #include "piece.hpp"
 #define MAX_RANGE 3
-void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
+void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range,int rangemax){
     int droite;
     int haut;
     if(abs(j-posy)!=abs(i-posx) && i-posx!=0 && j-posy != 0){ //si pas diagonale ou ligne
@@ -81,7 +81,7 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
         }
     }
 
-    if(*range>MAX_RANGE){
+    if(*range>rangemax){
         *choice = -1;
         *range = 0;
     }
@@ -89,8 +89,12 @@ void Piece::convertXYtoChoiceRange(int i, int j,int* choice,int* range){
 }
 
 void Piece::Reculer(int range, Playboard& pboard) {
-    int newY = posy + range;
-    if (newY < pboard.getCols() && newY >= 0) {
-        posy = newY;
+    int newY = posy;
+    int i =0;
+    while (i<range && pboard.getStatus(posx,posy+1)!=0 && newY < pboard.getCols()-1 && newY >= 0) {
+        posy = posy+1;
+        newY = posy + 1;
+        i++;
     }
+    return;
 }
