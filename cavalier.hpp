@@ -14,7 +14,7 @@ public:
     int deplacement(int choix, int range, Playboard& pboard)override;
 
     int pouvoir (int choix, Playboard& board);
-    void convertXYtoChoiceRange(int i, int j,int* choice,int* range);
+    void convertXYtoChoiceRange(int i, int j,int* choice,int* range, int rangemax);
     void display(SFMLRenderer &renderer, int j) override;
     int pouvoir(int dice_roll,int i, int j,Piece& piece_adverse, Playboard& pboard)override;
 

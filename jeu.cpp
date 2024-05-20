@@ -17,7 +17,7 @@ void Jeu::tour(sf::Vector2i posCell){
     
     joueur->my_piece->print();
     std::cout << "Click sur la case (" << posCell.x << ", " << posCell.y << ")" << std::endl;
-    joueur->my_piece->convertXYtoChoiceRange(posCell.x,posCell.y, &choice, &range);
+    joueur->my_piece->convertXYtoChoiceRange(posCell.x,posCell.y, &choice, &range,3);
     printf("choix%d range%d \n",choice,range);
     dep = joueur->my_piece->deplacement(choice,range,playboard);
     
