@@ -4,11 +4,14 @@
 #include <ctime>   // Pour std::time
 void Jeu::tour(sf::Vector2i posCell){
     Joueur *joueur;
+    Joueur *joueur_adverse;
     if (tourJ1){
         joueur = &joueur1;
+        joueur_adverse = &joueur2;
     }
     else if(tourJ2){
         joueur = &joueur2;
+        joueur_adverse = &joueur1;
     }
     int dep = 0;
     //int choice;
@@ -17,7 +20,7 @@ void Jeu::tour(sf::Vector2i posCell){
     joueur->my_piece->print();
     std::cout << "Click sur la case (" << posCell.x << ", " << posCell.y << ")" << std::endl;
     int dice_roll = std::rand() % 6 + 1;
-    joueur->my_piece->pouvoir(dice_roll,posCell.x,posCell.y,&joueur2->my_piece,playboard);
+    joueur->my_piece->pouvoir(dice_roll,posCell.x,posCell.y,joueur_adverse->my_piece,playboard);
     //joueur->my_piece->convertXYtoChoiceRange(posCell.x,posCell.y, &choice, &range);
     //printf("choix%d range%d \n",choice,range);
     //dep = joueur->my_piece->deplacement(choice,range,playboard);
