@@ -20,6 +20,7 @@ public:
         tourJ1 = true;
         tourJ2 = false;
         clickButton = false;
+        startGame = true;
         endGame = false;
         nbTours = 0;
         dice = 0;
@@ -34,7 +35,7 @@ public:
     Playboard playboard;
     int longueur;    // Length
     int largeur;     // Width
-    bool tourJ1, tourJ2, clickButton, endGame;
+    bool tourJ1, tourJ2, clickButton, startGame, endGame;
     int nbTours;
     int dice;
 };

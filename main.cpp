@@ -107,7 +107,26 @@ int main() {
     while (window.isOpen())
     {
         sf::Event event;    //Variable pour gérer l'évènement
-        if(!jeu.endGame){
+        if(jeu.startGame){
+            while (window.pollEvent(event))
+            {
+                // Fermer le fenêtre
+                if (event.type == sf::Event::Closed){
+                    window.close();
+                    std::cout << "Game closed" << std::endl;
+                }
+                if (event.type == sf::Event::MouseButtonPressed){
+                    if(event.mouseButton.button == sf::Mouse::Left){
+                        jeu.startGame = false;
+                    }
+                }
+            }
+
+            //Couleur de la fenêtre
+            window.clear(sf::Color::Black);
+            window.draw(renderer.sprite_Start);
+
+        }else if(!jeu.endGame){
             while (window.pollEvent(event))
             {
                 inputHandler(event, renderer, jeu);
@@ -121,6 +140,7 @@ int main() {
             jeu.playboard.display(renderer);
             jeu.joueur1.my_piece->display(renderer, 1);
             jeu.joueur2.my_piece->display(renderer, 2);
+
         }else{
             while (window.pollEvent(event))
             {
@@ -130,10 +150,17 @@ int main() {
                     std::cout << "Game closed" << std::endl;
                 }
             }
+
+            if(jeu.tourJ2){
+                renderer.getVictoryText().setString("Victoire du Joueur 1");
+            }else{
+                renderer.getVictoryText().setString("Victoire du Joueur 2");
+            }
             
             //Couleur de la fenêtre
-            window.clear(sf::Color::White);
-            renderer.drawInterface();
+            window.clear(sf::Color::Black);
+            window.draw(renderer.sprite_End);
+            window.draw(renderer.getVictoryText());
         }
             //Dessiner à l'écran tous les évènements
             window.display();

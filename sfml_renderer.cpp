@@ -13,18 +13,26 @@ SFMLRenderer::SFMLRenderer()
     //Création d'un texte
     txt.setFont(font);
     setText(txt, L"Règles du jeu\nTour à tour, lancer le dé,\npuis sélectionner la case où\navancer. Un duel a lieu tous les\n3 tours ou en allant sur une\ncase VS. Changer alors de\npièce pour atteindre la case\ndu roi en 1er. Chaque pièce\npossède un pouvoir spécifique\nen fonction de la valeur du dé.\nCliquer sur les pièces à\ndroite pour les connaître.");
+    //Button dice
     txtButton.setFont(font);
     txtButton.setString(L"Lancer le dé");
     txtButton.setCharacterSize(25);
     txtButton.setFillColor(sf::Color::Black);
     txtButton.setPosition(625,625);
+    //Text Victory
+    txtVictory.setFont(font);
+    txtVictory.setCharacterSize(40);
+    txtVictory.setFillColor(sf::Color::White);
+    txtVictory.setPosition(300,600);
     
     // Créer une texture à partir de l'image
+    texture_Start.loadFromFile("Pictures/ReachKing.png");
+    texture_End.loadFromFile("Pictures/ReachKingEnd.png");
     texture_Screen.loadFromFile("Pictures/Screen.jpeg");
     texture_Back.loadFromFile("Pictures/Back.jpeg");
     texture_Back2.loadFromFile("Pictures/Back2.jpg");
     //Button
-    texture_Button.loadFromFile("Pictures/Button2.png");
+    texture_Button.loadFromFile("Pictures/Button.png");
     //Cell
     texture_Rock.loadFromFile("Pictures/Rock.png");
     texture_VS.loadFromFile("Pictures/VS.png");
@@ -49,6 +57,8 @@ SFMLRenderer::SFMLRenderer()
     texture_BQueen.loadFromFile("Pictures/BlackPieces/Queen.png");
 
     // Créer un sprite avec la texture
+    sprite_Start.setTexture(texture_Start);
+    sprite_End.setTexture(texture_End);
     sprite_Screen.setTexture(texture_Screen);
     sprite_Back.setTexture(texture_Back);
     sprite_Back2L.setTexture(texture_Back2);
@@ -78,6 +88,14 @@ SFMLRenderer::SFMLRenderer()
     sprite_BBishop.setTexture(texture_BBishop);
     sprite_BRook.setTexture(texture_BRook);
     sprite_BQueen.setTexture(texture_BQueen);
+
+    //Start
+    sprite_Start.setScale(0.5,0.4);
+    sprite_Start.setPosition(0,0);
+
+    //End
+    sprite_End.setScale(0.5,0.4);
+    sprite_End.setPosition(0,0);
 
     //Screen
     sprite_Screen.setScale(0.63,0.56);
@@ -312,75 +330,83 @@ void inputHandler(sf::Event event, SFMLRenderer &renderer, Jeu& jeu){
             //WPawn
             if(renderer.sprite_WPawn.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 1 à choisi un Pawn");
                     jeu.joueur1.changerpiece(1);
                     jeu.joueur1.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 2 à choisi un Pawn");
                     jeu.joueur2.changerpiece(1);
                     jeu.joueur2.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else{
-                    setText(renderer.getText(), L"Pawn\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez de 1 case,\nl'adversaire recule de 1 case\n- 2 ou 4 : Avancez de 1 case,\nl'adversaire recule de 3 cases\n- 6 : Avancez de 1 case,\nl'adversaire recule de 5 cases");
+                    setText(renderer.getText(), L"Pion\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez de 1 case,\nl'adversaire recule de 1 case\n- 2 ou 4 : Avancez de 1 case,\nl'adversaire recule de 3 cases\n- 6 : Avancez de 1 case,\nl'adversaire recule de 5 cases");
                 }
             }
 
             //WKnight
             if(renderer.sprite_WKnight.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 1 à choisi un Knight");
                     jeu.joueur1.changerpiece(2);
                     jeu.joueur1.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 2 à choisi un Knight");
                     jeu.joueur2.changerpiece(2);
                     jeu.joueur2.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else{
-                    setText(renderer.getText(), L"Knight\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez en L\n- 2 ou 4 : Avancez en L,\nl'adversaire recule de 1 case\n- 6 : Avancez en L,\nl'adversaire recule de 3 cases");
+                    setText(renderer.getText(), L"Cavalier\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez en L\n- 2 ou 4 : Avancez en L,\nl'adversaire recule de 1 case\n- 6 : Avancez en L,\nl'adversaire recule de 3 cases");
                 }
             }
 
             //WBishop
             if(renderer.sprite_WBishop.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 1 à choisi un Bishop");
                     jeu.joueur1.changerpiece(3);
                     jeu.joueur1.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 2 à choisi un Bishop");
                     jeu.joueur2.changerpiece(3);
                     jeu.joueur2.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else{
-                    setText(renderer.getText(), L"Bishop\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 3\ncases\n- 2 ou 4 : Avancez jusqu'à 3\ncases, l'adversaire recule de\n1 case\n- 6 : Avancez jusqu'à 3 cases,\nl'adversaire recule de 3 cases\n");
+                    setText(renderer.getText(), L"Fou\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 3\ncases\n- 2 ou 4 : Avancez jusqu'à 3\ncases, l'adversaire recule de\n1 case\n- 6 : Avancez jusqu'à 3 cases,\nl'adversaire recule de 3 cases\n");
                 }
             }
 
             //WRook
             if(renderer.sprite_WRook.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
                 if(jeu.joueur1.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 1 à choisi une Rook");
                     jeu.joueur1.changerpiece(4);
                     jeu.joueur1.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else if(jeu.joueur2.choosePiece){
-                    setText(renderer.getText(), L"Le joueur 2 à choisi une Rook");
                     jeu.joueur2.changerpiece(4);
                     jeu.joueur2.choosePiece = false;
+                    renderer.drawGameStatut(jeu);
                 }else{
-                    setText(renderer.getText(), L"Rook\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 3\ncases\n- 2 ou 4 : Avancez jusqu'à 4\ncases\n- 6 : Avancez jusqu'à 5 cases");
+                    setText(renderer.getText(), L"Tour\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 3\ncases\n- 2 ou 4 : Avancez jusqu'à 4\ncases\n- 6 : Avancez jusqu'à 5 cases");
                 }
             }
 
             //WQueen
             if(renderer.sprite_WQueen.getGlobalBounds().contains(mousePosition.x,mousePosition.y)){
-                if(jeu.joueur1.choosePiece && jeu.joueur1.point >= 3){
-                    setText(renderer.getText(), L"Le joueur 1 à choisi une Queen");
-                    jeu.joueur1.changerpiece(5);
-                    jeu.joueur1.choosePiece = false;
-                }else if(jeu.joueur2.choosePiece && jeu.joueur2.point >= 3){
-                    setText(renderer.getText(), L"Le joueur 2 à choisi une Queen");
-                    jeu.joueur2.changerpiece(5);
-                    jeu.joueur2.choosePiece = false;
+                if(jeu.joueur1.choosePiece){
+                    if(jeu.joueur1.point >= 3){
+                        jeu.joueur1.changerpiece(5);
+                        jeu.joueur1.choosePiece = false;
+                        renderer.drawGameStatut(jeu);
+                    }else{
+                        setText(renderer.getText(), L"Vous n'avez pas assez de\npoints");
+                    }
+                }else if(jeu.joueur2.choosePiece){
+                    if(jeu.joueur2.point >= 3){
+                        jeu.joueur2.changerpiece(5);
+                        jeu.joueur2.choosePiece = false;
+                        renderer.drawGameStatut(jeu);
+                    }else{
+                        setText(renderer.getText(), L"Vous n'avez pas assez de\npoints");
+                    }
                 }else{
-                    setText(renderer.getText(), L"Queen\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 4\ncases, l'adversaire recule de\n1 case\n- 2 ou 4 : Avancez jusqu'à 4\ncases, l'adversaire recule de\n3 cases\n- 6 : Avancez jusqu'à 4 cases,\nl'adversaire recule de 4 cases\n");
+                    setText(renderer.getText(), L"Reine\n\nSi le dé tombe sur :\n- 1, 3 ou 5 : Avancez jusqu'à 4\ncases, l'adversaire recule de\n1 case\n- 2 ou 4 : Avancez jusqu'à 4\ncases, l'adversaire recule de\n3 cases\n- 6 : Avancez jusqu'à 4 cases,\nl'adversaire recule de 4 cases\n");
                 }
             }
 
@@ -420,36 +446,91 @@ void setText(sf::Text &txt, const sf::String &string){
 }
 
 void SFMLRenderer::drawGameStatut(Jeu& jeu){
-    if(jeu.clickButton){
-        //Numéro du dé
-        std::wstring wdice = std::to_wstring(jeu.dice);
+    //Numéro du dé
+    std::wstring wdice = std::to_wstring(jeu.dice);
+    //Nombres de points des joueurs
+    std::wstring wpoints1 = std::to_wstring(jeu.joueur1.point);
+    std::wstring wpoints2 = std::to_wstring(jeu.joueur2.point);
 
+    if(jeu.clickButton){
+        std::wstring move = MovePossible(jeu);
         if(jeu.tourJ1){
-            std::wstring wpoints = std::to_wstring(jeu.joueur1.point);
-            sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints + L"\n\nLe dé est tombé sur " + wdice + L"\n\nVous pouvez choisir une case";
+            sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints1 + L"\n\nLe dé est tombé sur " + wdice + L"\n\n" + move + L"\n\nVous pouvez choisir une case";
             setText(txt, message);
         }
         else if(jeu.tourJ2){
-            std::wstring wpoints = std::to_wstring(jeu.joueur2.point);
-            sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints  + L"\n\nLe dé est tombé sur " + wdice + L"\n\nVous pouvez choisir une case";
+            sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints2  + L"\n\nLe dé est tombé sur " + wdice + L"\n\n" + move + L"\n\nVous pouvez choisir une case";
             setText(txt, message);
         }
     }else if(!jeu.clickButton){
         if(jeu.tourJ1){
-            std::wstring wpoints = std::to_wstring(jeu.joueur1.point);
-            sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints + L"\n\nVeuillez lancer le dé";
+            sf::String message = L"Tour du Joueur 1\n\nNombre de duels gagnés : " + wpoints1 + L"\n\nVeuillez lancer le dé";
             setText(txt, message);
         }
         else if(jeu.tourJ2){
-            std::wstring wpoints = std::to_wstring(jeu.joueur2.point);
-            sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints + L"\n\nVeuillez lancer le dé";
+            sf::String message = L"Tour du Joueur 2\n\nNombre de duels gagnés : " + wpoints2 + L"\n\nVeuillez lancer le dé";
             setText(txt, message);
         }
     }
+
     if(jeu.joueur1.choosePiece){
-        setText(txt, L"Duel : Le Joueur 1  a gagné\nChoisissez une une piece");
+        setText(txt, L"Duel :\nLe Joueur 1  a gagné\n\nVous avez : " + wpoints1 + L" pts\n\nChoisissez une une piece\nparmis celles à droite (sauf\nle roi)\nPrendre la reine coûte 3 pts");
     }
     else if(jeu.joueur2.choosePiece){
-        setText(txt, L"Duel : Le Joueur 2  a gagné\nChoisissez une une piece");
+        setText(txt, L"Duel :\nLe Joueur 2  a gagné\n\nVous avez : " + wpoints2 + L" pts\n\nChoisissez une une piece\nparmis celles à droite (sauf\nle roi)\nPrendre la reine coûte 3 pts");
     }
+}
+
+std::wstring MovePossible(Jeu& jeu){
+    Joueur joueur;
+    if (jeu.tourJ1){
+        joueur = jeu.joueur1;
+    }
+    else if(jeu.tourJ2){
+        joueur = jeu.joueur2;
+    }
+
+    if(joueur.my_piece->name == "Pion"){
+        if(jeu.dice == 1 || jeu.dice == 3 || jeu.dice == 5){
+            return L"Pion : Avancez de 1 case,\nl'adversaire recule de 1 case";
+        }else if(jeu.dice == 2 || jeu.dice == 4){
+            return L"Pion : Avancez de 1 case,\nl'adversaire recule de 3 cases";
+        }else if(jeu.dice == 6){
+            return L"Pion : Avancez de 1 case,\nl'adversaire recule de 5 cases";
+        }
+    }else if(joueur.my_piece->name == "Cavalier"){
+        if(jeu.dice == 1 || jeu.dice == 3 || jeu.dice == 5){
+            return L"Cavalier : Avancez en L";
+        }else if(jeu.dice == 2 || jeu.dice == 4){
+            return L"Cavalier : Avancez en L,\nl'adversaire recule de 1 case";
+        }else if(jeu.dice == 6){
+            return L"Cavalier : Avancez en L,\nl'adversaire recule de 3 cases";
+        }
+    }else if(joueur.my_piece->name == "Fou"){
+        if(jeu.dice == 1 || jeu.dice == 3 || jeu.dice == 5){
+            return L"Fou : Avancez jusqu'à 3\ncases";
+        }else if(jeu.dice == 2 || jeu.dice == 4){
+            return L"Fou : Avancez jusqu'à 3\ncases, l'adversaire recule de\n1 case";
+        }else if(jeu.dice == 6){
+            return L"Fou : Avancez jusqu'à 3\ncases, l'adversaire recule de\n3 cases";
+        }
+    }else if(joueur.my_piece->name == "Tour"){
+        if(jeu.dice == 1 || jeu.dice == 3 || jeu.dice == 5){
+            return L"Tour : Avancez jusqu'à 3\ncases";
+        }else if(jeu.dice == 2 || jeu.dice == 4){
+            return L"Tour : Avancez jusqu'à 4\ncases";
+        }else if(jeu.dice == 6){
+            return L"Tour : Avancez jusqu'à 5\ncases";
+        }
+    }else if(joueur.my_piece->name == "Reine"){
+        if(jeu.dice == 1 || jeu.dice == 3 || jeu.dice == 5){
+            return L"Reine : Avancez jusqu'à 4\ncases, l'adversaire recule de\n1 case";
+        }else if(jeu.dice == 2 || jeu.dice == 4){
+            return L"Reine : Avancez jusqu'à 4\ncases, l'adversaire recule de\n3 cases";
+        }else if(jeu.dice == 6){
+            return L"Reine : Avancez jusqu'à 4\ncases, l'adversaire recule de\n4 cases";
+        }
+    }
+
+    return L"Erreur";
 }
