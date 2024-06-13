@@ -1,5 +1,7 @@
 CC = g++ # Le compilateur
 CFLAGS = -std=c++11 -Wall # Options du compilateur
+INCLUDE_DIRS = -I/opt/homebrew/Cellar/sfml/2.6.1/include # Chemin des fichiers d'en-tête
+LIB_DIRS = -L/opt/homebrew/Cellar/sfml/2.6.1/lib # Chemin des bibliothèques
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
 
 # Les fichiers source
@@ -14,10 +16,10 @@ EXEC = proj
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(EXEC) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(EXEC) $(LIB_DIRS) $(LIBS)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE_DIRS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ) $(EXEC)
